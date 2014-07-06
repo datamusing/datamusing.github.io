@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Musings in Amusing Data]]></title>
-  <link href="http://datamusing.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: machine learning | Musings in Amusing Data]]></title>
+  <link href="http://datamusing.github.io/blog/categories/machine-learning/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
   <updated>2014-07-06T13:28:43-07:00</updated>
   <id>http://datamusing.github.io/</id>
