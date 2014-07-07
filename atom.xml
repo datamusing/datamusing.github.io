@@ -4,7 +4,7 @@
   <title><![CDATA[Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2014-07-06T22:39:41-07:00</updated>
+  <updated>2014-07-07T00:18:17-07:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -36,7 +36,7 @@
 <ul>
   <li>Extract R, G, B pixel values from the input image. </li>
   <li>Normalize:  <script type="math/tex">r=R/(R+G+B)</script>,   <script type="math/tex">g=G/(R+G+B)</script> and <script type="math/tex">b=B/(R+G+B)</script>, so that <script type="math/tex">(r+g+b) = 1</script> for each pixel.</li>
-  <li>Next, generate three quantities ()note that $(r+g+b)$ being unity is redundant here, but the authors probably left it in to make the normalization explicit): </li>
+  <li>Next, generate three quantities (note that $(r+g+b)$ being unity is redundant here, but the authors probably left it in to make the normalization explicit): </li>
 </ul>
 
 <script type="math/tex; mode=display">% &lt;![CDATA[
