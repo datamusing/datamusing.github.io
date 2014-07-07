@@ -4,7 +4,7 @@
   <title><![CDATA[Category: machine learning | Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/blog/categories/machine-learning/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2014-07-06T13:40:28-07:00</updated>
+  <updated>2014-07-06T21:55:25-07:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -18,8 +18,65 @@
     <link href="http://datamusing.github.io/blog/2014/07/06/detecting-people-in-photographs-using-skin-tone/"/>
     <updated>2014-07-06T00:26:21-07:00</updated>
     <id>http://datamusing.github.io/blog/2014/07/06/detecting-people-in-photographs-using-skin-tone</id>
-    <content type="html"><![CDATA[<p>My job at opentable requires me to look at very appetizing food photography all the time! </p>
+    <content type="html"><![CDATA[<p>SAN FRANCISCO, CA — As a Data Scientist at <a href="http://opentable.com">OpenTable</a>, my computer screen often fills up with images of scrumptious food items (<em>effectively keeping my metabolic rate on  a high gear!</em>). Many of these photographs are professionally or semi-professionally taken by food photographers or enthusiasts ( aka FoodSpotters!).  <img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/detectSkin/tea-party.jpg" width="200" height="200" title="tea-party tea-party 2" > Annoyingly, a lot of photos, especially those from social media channels,  come with portraits of eaters posing with the eaten, such as the one shown here.   Of course, one could use face detection algorithms, and other sophisticated techniques to weed out these photos. These techniques often require a lot of overhead and dependency on external libraries. Also, there may not even be a face in the photo to detect, but a hand or some portion of the torso might be showing. Over the weekend, I have been thinking about very fast ways of finding a human subject in a photograph, so that I could generate some quick features for classifying photos. It turns out that one promising way to do that could be to detect human skin pixels in the photos. </p>
 
+<h2 id="detecting-skin-pixels"><em>Detecting skin pixels</em></h2>
+
+<p>A quick digging into the subject of detecting skin pixels revealed a rich literature on this subject. As this is a blog post and not a review paper, I will only describe the bits I used, and leave the reader with this <a href="http://academic.aua.am/Skhachat/Public/Papers%20on%20Face%20Detection/Survey%20on%20Skin%20Color%20Techniques.pdf">paper</a> or <a href="http://pdf.aminer.org/000/367/151/image_chromatic_adaptation_using_anns_for_skin_color_adaptation.pdf">this one</a> as an entry point into this subject. <em>The fundamental concept behind pixel based skin detection is that the color of human skin (across various races and ethnicities) occupies a very tight region in the space of colors.</em>  In brief, there are three main ways to detect skin pixels: 
+  <!--more--> </p>
+
+<ol>
+  <li><strong>Explicit Skin Model Based Method</strong>:  This class of methods try to use machine learning to find the best colorspace and a simple decision rule to define the boundaries the skin cluster in that colorspace. </li>
+  <li><strong>Non-parametric Methods</strong>:  The key idea here is to estimate skin color distribution from a training data without deriving an explicit model of the skin color, e.g. a Naive-Bayes classifier. A skin/non-skin training data set can be found <a href="https://archive.ics.uci.edu/ml/datasets/Skin+Segmentation">here</a>.</li>
+  <li><strong>Parametric Methods</strong>:  Here, one models the skin color distributions as parameterized probability distributions, such as Gaussians, or mixtures of Gaussians.</li>
+</ol>
+
+<p>As a first stab, I decided to go with method (1) above. A little more investigation led me to the  <a href="http://www.cse.unsw.edu.au/~tatjana/ICMLWS02/MLCV/Morales.pdf">Gomez and Morales (2002)</a> paper where the authors used a constructive induction algorithm which produces a single rule that defines the skin color boundary conditions in the RGB colorspace. Their method leads to an  extremely simple rule that goes as follows: </p>
+
+<ul>
+  <li>Extract R, G, B pixel values from the input image. </li>
+  <li>Normalize:  <script type="math/tex">r=R/(R+G+B)</script>,   <script type="math/tex">g=G/(R+G+B)</script> and <script type="math/tex">b=B/(R+G+B)</script>, so that <script type="math/tex">(r+g+b) = 1</script> for each pixel.</li>
+  <li>Next, generate three quantities ()note that $(r+g+b)$ being unity is redundant here, but the authors probably left it in to make the normalization explicit): </li>
+</ul>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+  
+\begin{eqnarray}
+	\alpha &=& \frac{3b r^2}{(r+g+b)^3}\\
+	\beta &=& \frac{r+g+b}{3r} + \frac{r-g}{r+g+b}	\\
+	\gamma &=& \frac{r b+g^2}{g b}
+\end{eqnarray}
+ %]]&gt;</script>
+
+<ul>
+  <li>Finally, a pixel is categorized as “skin” if the pixel satisfies <strong>all</strong> of the following three conditions: $\alpha&gt;0.1276$, $\beta \le 0.9498$ and  $\gamma \le 2.7775$.</li>
+</ul>
+
+<p>Note that these rules were based the training set available when the paper was written, and I should probably be regenerating the rules with more training examples available now. But, the color of skin has not changed significantly in 10 years, so lets continue! </p>
+
+<p>Here is a quick Python implementation:</p>
+
+<p><code>python
+import matplotlib.image as mpimg
+# read in the image
+values = mpimg.imread("tea-party.jpg")
+# separate out r, g, b channels
+r = values[:,:,0].astype('f')
+g = values[:,:,1].astype('f')
+b = values[:,:,2].astype('f')
+# generate the three quantities 
+alpha = 3*b*r**2/(r+b+g)**3
+beta =  (r+g+b)/(3*r) + (r-g)/(r+g+b)
+gamma = (r*b+g**2)/(g*b)
+# finally we apply the rules:
+pylab.imshow((alpha&gt;0.1276)&amp;(beta&lt;=0.9498)&amp;(gamma&lt;=2.7775),cmap='gray')
+</code>
+which gives us the following result, where white represents pixels labeled as skin (the original image is also below for easy comparison):<br />
+<img class="center" src="https://dl.dropboxusercontent.com/u/18915298/blog/detectSkin/tea_party_binary.png" width="300" height="300"></p>
+
+<p><img class="center" src="https://dl.dropboxusercontent.com/u/18915298/blog/detectSkin/tea-party.jpg" width="300" height="300"></p>
+
+<p>As  you can see, this one simple rule does remarkably well in isolating skin pixels. </p>
 ]]></content>
   </entry>
   
