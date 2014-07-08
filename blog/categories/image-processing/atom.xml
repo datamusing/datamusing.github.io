@@ -4,7 +4,7 @@
   <title><![CDATA[Category: image processing | Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/blog/categories/image-processing/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2014-07-07T00:18:17-07:00</updated>
+  <updated>2014-07-08T09:58:38-07:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -18,7 +18,7 @@
     <link href="http://datamusing.github.io/blog/2014/07/06/detecting-people-in-photographs-using-skin-tone/"/>
     <updated>2014-07-06T00:26:21-07:00</updated>
     <id>http://datamusing.github.io/blog/2014/07/06/detecting-people-in-photographs-using-skin-tone</id>
-    <content type="html"><![CDATA[<p>SAN FRANCISCO, CA — As a Data Scientist at <a href="http://opentable.com">OpenTable</a>, my computer screen often fills up with images of scrumptious food items (<em>effectively keeping my metabolic rate on  a high gear!</em>). Many of these photographs are professionally or semi-professionally taken by food photographers or enthusiasts ( aka FoodSpotters!).  <img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/detectSkin/tea-party.jpg" width="200" height="200" title="tea-party tea-party 2" > Annoyingly, a lot of photos, especially those from social media channels,  come with portraits of eaters posing with the eaten, such as the one shown here.   Of course, one could use face detection algorithms, and other sophisticated techniques to weed out these photos. These techniques often require a lot of overhead and dependency on external libraries. Also, there may not even be a face in the photo to detect, but a hand or some portion of the torso might be showing. Over the weekend, I have been thinking about very fast ways of finding a human subject in a photograph, so that I could generate some quick features for classifying photos. It turns out that one promising way to do that could be to detect human skin pixels in the photos. </p>
+    <content type="html"><![CDATA[<p>SAN FRANCISCO, CA — As a Data Scientist at <a href="http://opentable.com">OpenTable</a>, my computer screen often fills up with images of scrumptious food items (<em>effectively keeping my metabolic rate on  a high gear!</em>). Many of these photographs are professionally or semi-professionally taken by food photographers or enthusiasts (aka FoodSpotters!).  <img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/detectSkin/tea-party.jpg" width="200" height="200" title="tea-party tea-party 2" > Annoyingly, a lot of photos, especially those from social media channels,  come with portraits of eaters posing with the eaten, such as the one shown here.   Of course, one could use face detection algorithms, and other sophisticated techniques to weed out these photos. These techniques often require a lot of overhead and dependency on external libraries. Also, there may not even be a face in the photo to detect, but a hand or some portion of the torso might be showing. Over the weekend, I have been thinking about very fast ways of finding a human subject in a photograph, so that I could generate some quick features for classifying photos. It turns out that one promising way to do that could be to detect human skin pixels in the photos. </p>
 
 <h2 id="detecting-skin-pixels"><em>Detecting skin pixels</em></h2>
 
