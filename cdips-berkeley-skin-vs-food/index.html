@@ -116,7 +116,7 @@ MathJax.Hub.Config({
 
 <p>So lets get some images from the web! </p>
 
-<h2 id="getting-photos-from-instagram">Getting Photos from Instagram</h2>
+<h1 id="getting-photos-from-instagram">Getting Photos from Instagram</h1>
 
 <h3 id="get-an-instagram-client-idsecret">Get an Instagram Client ID/SECRET</h3>
 
@@ -137,7 +137,24 @@ Just give it an Application Name, a Description, a Website (you can use your per
 
 <p><img src="https://dl.dropboxusercontent.com/u/18915298/CDIPS/instagram_crawl.png" width="800" height="800" title="ipnb ipnb" /></p>
 
-<p>Let’s see what happened here. </p>
+<p>Let’s see what is happening here! </p>
+
+<ul>
+  <li>First, we import and initialize the Instagram API with the <code>client_id</code> and the <code>client_secret</code> obtained when registering your app with instagram.</li>
+  <li>Then, we did a location search with something called a <code>foursquare_v2_id</code>.   We are doing this because it is easier to find the foursquare id associated with a restaurant, and then derive the instagram location id. To find the FourSquare ID  got to foursquare.com and search for the place. The url will have the id. For example the FourSquare url for “Slanted Door” was <code>https://foursquare.com/v/slanted-door/3fd66200f964a52018ed1ee3</code>
+which explains the ID I used. </li>
+  <li>With that location ID, we then do a media search, which gives us a bunch of media objects plus a link to the next page as <code>next</code></li>
+  <li>Then, we cycled through the media list, and got the urls for the standard_resolution images. </li>
+  <li>Note that the <code>next</code> variable contains a new <code>max_id</code>, which we can use to get the next page of images. </li>
+  <li>So, in the next call, we would use: </li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">mm</span><span class="p">,</span> <span class="nb">next</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">location_recent_media</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="mi">797</span><span class="p">,</span><span class="n">max_id</span><span class="o">=</span><span class="mi">766864469753630841</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>Now, you can easily loop through the pages to get all the images for this location. Note, that you need to throttle the requests to instagram so that you roughly do one request per second. Use the <code>time.sleep</code> function to limit the requests. </p>
+
+<h1 id="feature-selection">Feature Selection</h1>
 
 </div>
 </article>
