@@ -232,7 +232,7 @@ Owned by James Beard Award-winning sommelier and author David Lynch, St. Vincent
 
 One of the top dishes here is the bone marrow. 
 
-#Bone marrow
+##Bone marrow
 
 ![bone marrow] (http://s3.amazonaws.com/foodspotting-ec2/reviews/4547794/thumb_600.jpg?1394866096?1407704079)
 
