@@ -4,7 +4,7 @@
   <title><![CDATA[Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2014-09-04T18:49:12-07:00</updated>
+  <updated>2014-09-04T18:49:14-07:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -74,7 +74,7 @@ which I am not going to belabor with here. Again, all other information is now n
 <p>Here is what I did:</p>
 
 <ul>
-  <li>For the data wrangling part I used Python.  I read in the data from the FITS file using <code>pyfits</code> and then processed it using <code>Pandas</code>. Then end results was a tab separated text file with 516 rows. </li>
+  <li>For the data wrangling part I used Python.  I read in the data from the FITS file using <code>pyfits</code> and then processed it using <code>Pandas</code>. Then end result was a tab separated text file with 516 rows. </li>
   <li>For the visualization, I have used a library here called <a href="http://dimplejs.org/">dimple.js</a> that is a high level abstraction of the d3 library.  I pretty much took the <a href="http://dimplejs.org/examples_viewer.html?id=bubbles_standard">bubble chart example</a> and started modifying it. </li>
 </ul>
 
