@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: interactive, | Musings in Amusing Data]]></title>
+  <link href="http://datamusing.github.io/blog/categories/interactive/atom.xml" rel="self"/>
+  <link href="http://datamusing.github.io/"/>
+  <updated>2014-09-04T18:22:10-07:00</updated>
+  <id>http://datamusing.github.io/</id>
+  <author>
+    <name><![CDATA[Sudeep Das]]></name>
+    <email><![CDATA[datamusing@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Fun with interactive visualizations in astrophysics]]></title>
+    <link href="http://datamusing.github.io/blog/2014/09/03/the-case-for-interactive-visualizations-in-astrophysics/"/>
+    <updated>2014-09-03T18:33:25-07:00</updated>
+    <id>http://datamusing.github.io/blog/2014/09/03/the-case-for-interactive-visualizations-in-astrophysics</id>
+    <content type="html"><![CDATA[<p>Recently, I have been playing  a lot with interactive data visualizations for my data science introspection work. While making these interactive plots, and experiencing their sheer power in expressing so many aspects of the data in clean and simple charts, I have often wondered how much more enriching such interactive visualizations would have been in my astrophysicist life. The most versatile tool for this purpose is undoubtedly the <a href="http://d3js.org/">d3.js</a> javascript library. There is a  steep learning curve in mastering d3, and honestly, I am climbing it right now. So maybe, it would have been a bit  too much to invest a lot of time in picking up this tool while I was busy writing code, papers and grant proposals.  </p>
+
+<blockquote>
+  <p>Luckily, it turns out that there are high level libraries that have been built on top of d3.js, which are way simpler to use, and in as little as half an hour, one could have a rich interactive plot up and running!  </p>
+</blockquote>
+
+<p>So, here is my attempt to  share that sliver of wisdom, so that you, my  esteemed astrophysicist colleague, can make plots like this pretty easily. I show a case study here with a recent data release from the South Pole Telescope collaboration. </p>
+
+<p><!--more--> </p>
+
+<h2 id="the--2500-square-degree-spt-sz-cluster-sample">The  2500 square-degree SPT-SZ Cluster Sample</h2>
+
+<p>On September 2, 2014 the South Pole Telescope (SPT) collaboration published a paper on the arXiv entitled <em>Galaxy Clusters Discovered via the Sunyaev-Zel’dovich Effect in the 2500-square-degree SPT-SZ survey</em> <a href="http://arxiv.org/abs/1409.0850">(Bleem et al. 2014)</a>.  Incidentally, the work was led by Lindsey Bleem  whom I had the pleasure to interact with as  a fellow postdoc at the Argonne National Laboratory. <img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/sptpaper/bleemEtAl.png" width="400" height="200">
+ This paper represents solid work  of following up 677 Sunyaev-Zel’dovich (SZ) clusters detected (at more than 4.5-$\sigma$ significance) by the temperature decrements they cause in the 95 and 150 GHz cosmic microwave background (CMB) maps. To confirm  these detections,  ground- and space-based imaging  was used to find their optical and near-infrared (NIR) counterparts. In 516 of the 677 candidates, the counterparts were found and a redshift could be derived. Here is a plot from the paper showing the mass vs. redshift of these 516 clusters as black crosses. From each point on the figure, you can read off the the mass ($M_500$)  and the redshift of the cluster. But there is so much more information for each galaxy cluster: </p>
+
+<ul>
+  <li>the cluster ID</li>
+  <li>the  detection significance ($\xi$)</li>
+  <li>whether the cluster has an x-ray companion (XRAY)</li>
+  <li>whether the cluster exhibits strong lensing (SL)</li>
+  <li>the integrated Componization parameter, $Y_{SZ}$. </li>
+  <li>the  core radius ($\theta_c$)  (a measure of the size of the central core)</li>
+</ul>
+
+<p>to name the most interesting ones. </p>
+
+<p>So naturally, I was interested in  if we could put all this rich information into a single plot! <br />
+I came up with two very quick versions of the visualization. They both have all the above info, but they are presented 
+with different purposes in mind. </p>
+
+<p>Here they are:</p>
+
+<h2 id="visualization-1-i-am-more-in-interested-in-the-detection-significance-and-which-clusters-have-strong-lensing-andor-an-x-ray-counterparts">Visualization 1: I am more in interested in the detection significance, and which clusters have strong lensing and/or an X-ray counterparts</h2>
+
+<p>Mouse over each bubble to activate the tooltip. </p>
+
+<iframe width="100%" height="600" frameborder="0" src="http://bl.ocks.org/datamusing/raw/d353dd63e013448727b4/" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>
+
+<p>What I have done in the above plot is make the size of the bubble for each cluster proportional to its detection significance. You can immediately see that  bubbles get bigger as you go higher in the plot (along the mass axis), showing that more massive clusters were detected much more easily (that is a characteristic of the SZ effect). Then, I also color coded the ones that have only SZ, SZ+SL, SZ+XRAY, and SZ+SL+XRAY so that you can quickly investigate the properties of any specific class of cluster (e.g. the strong lensing clusters). Note that all the other information are contained in the tooltip, as you hover over the cluster. </p>
+
+<h2 id="visualization-2-i-am-more-in-interested-in-the-size-and-flux-of-the-clusters-and-visually-see-if-there-are-trends">Visualization 2: I am more in interested in the size and flux of the clusters, and visually see if there are trends.</h2>
+
+<iframe width="100%" height="600" frameborder="0" src="http://bl.ocks.org/datamusing/raw/19ed8e9811c11a4ed9be/" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>
+
+<p>In this case, I made the size of the cluster bubble proportional to, well, its size ($\theta_c$), and its color a hue of orange that deepens as the Comptonization parameter $Y_{SZ}$  increases. </p>
+
+<p>You can visually appreciate here the fact the $Y_{SZ}$ increases as mass increases, and that fact is fairly insensitive to redshift (this is a very typical scaling relation of the SZ effect). You can also see that the low mass, low redshift clusters have larger core radii. If you have spent a lot of time with SZ clusters, you can appreciated various other relations in this plot,
+which I am not going to belabor with here. Again, all other information is now neatly contained in the tooltip. </p>
+
+<h1 id="do-it-yourself">Do It Yourself</h1>
+
+<p>So, how do you quickly make this yourself! </p>
+
+<p>Here is what I did:</p>
+
+<ul>
+  <li>For the data wrangling part I used Python.  I read in the data from the FITS file using <code>pyfits</code> and then processed it using <code>Pandas</code>. Then end results was a tab separated text file with 516 rows. </li>
+  <li>For the visualization, I have used a library here called <a href="http://dimplejs.org/">dimple.js</a> that is a high level abstraction of the d3 library.  I pretty much took the <a href="http://dimplejs.org/examples_viewer.html?id=bubbles_standard">bubble chart example</a> and started modifying it. </li>
+</ul>
+
+<p>The code is essentially about 30 lines of html:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="ni">&amp;lt;</span>div id=&quot;chartContainer&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://dimplejs.org/dist/dimple.v2.1.0.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">dimple</span><span class="p">.</span><span class="nx">newSvg</span><span class="p">(</span><span class="s2">&quot;#chartContainer&quot;</span><span class="p">,</span> <span class="mi">750</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">d3</span><span class="p">.</span><span class="nx">tsv</span><span class="p">(</span><span class="s2">&quot;spt_opt_labels.tsv&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">myChart</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">dimple</span><span class="p">.</span><span class="nx">chart</span><span class="p">(</span><span class="nx">svg</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">myChart</span><span class="p">.</span><span class="nx">setBounds</span><span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">445</span><span class="p">)</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">myChart</span><span class="p">.</span><span class="nx">addMeasureAxis</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;REDSHIFT&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">myChart</span><span class="p">.</span><span class="nx">addMeasureAxis</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;M500 (1e14)&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">myChart</span><span class="p">.</span><span class="nx">addMeasureAxis</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;XI&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">myChart</span><span class="p">.</span><span class="nx">addSeries</span><span class="p">([</span><span class="s2">&quot;SPT_ID&quot;</span><span class="p">,</span><span class="s2">&quot;M500 (1e14)&quot;</span><span class="p">,</span><span class="s2">&quot;THETA_CORE&quot;</span><span class="p">,</span><span class="s2">&quot;YSZ&quot;</span><span class="p">,</span><span class="s2">&quot;XI&quot;</span><span class="p">,</span><span class="s2">&quot;LABEL&quot;</span><span class="p">],</span> <span class="nx">dimple</span><span class="p">.</span><span class="nx">plot</span><span class="p">.</span><span class="nx">bubble</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">s</span><span class="p">.</span><span class="nx">getTooltipText</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">return</span> <span class="p">[</span>
+</span><span class='line'>                    <span class="s2">&quot;Cluster ID: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+</span><span class='line'>                    <span class="s2">&quot;Mass M500 (x 10^14) = &quot;</span> <span class="o">+</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">1</span><span class="p">]).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span><span class='line'>                    <span class="s2">&quot;Core radius: &quot;</span> <span class="o">+</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">2</span><span class="p">]).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span><span class='line'>                    <span class="s2">&quot;Y_SZ = &quot;</span> <span class="o">+</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">3</span><span class="p">]).</span><span class="nx">toExponential</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+</span><span class='line'>                    <span class="s2">&quot;Detection significance = &quot;</span><span class="o">+</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">4</span><span class="p">]).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">];</span>
+</span><span class='line'>      <span class="p">};</span><span class="nt">&lt;/script&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span>  z.overrideMax = 150.0;
+</span><span class='line'>  var myLegend = myChart.addLegend(540, 30, 150, 50, &quot;right&quot;);
+</span><span class='line'>  myLegend.fontSize = &quot;10px&quot;;
+</span><span class='line'>  myChart.assignColor(&quot;SZ+SL+XRAY&quot;, &quot;#a6611a&quot;,0.8);
+</span><span class='line'>  myChart.assignColor(&quot;SZ+XRAY&quot;, &quot;#dfc27d&quot;);
+</span><span class='line'>  myChart.assignColor(&quot;SZ&quot;, &quot;#80cdc1&quot;);
+</span><span class='line'>  myChart.assignColor(&quot;SZ+SL&quot;, &quot;#018571&quot;);
+</span><span class='line'>  myChart.draw();
+</span><span class='line'>});   <span class="ni">&amp;lt;</span>/script<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span><span class="ni">&amp;lt;</span>/div<span class="ni">&amp;gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>And that is all you need, to produce this powerful graphic!</p>
+
+<h2 id="learning-by-example">Learning by example</h2>
+
+<p>To get started I would suggest downloading the html file and the tsv file that I have made availably publicly.<br />
+Here is my <a href="https://gist.github.com/datamusing/d353dd63e013448727b4">gist</a>.</p>
+
+<p>The steps:</p>
+
+<ul>
+  <li>Clone my gist using</li>
+</ul>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone https://gist.github.com/d353dd63e013448727b4.git</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<ul>
+  <li>Inside the gist directory, you will find all necessary files. The main file to look at is  <code>index.html</code></li>
+  <li>Fire up a server from inside that directory using:</li>
+</ul>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ python -m SimpleHTTPServer 9999</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<ul>
+  <li>Point your browser (no IE8 please!) to localhost:9999</li>
+  <li>You should be able to see the viz on your browser now! </li>
+  <li>Get your own table and make your own viz. </li>
+  <li>Once you are happy with your results you can post it to a Github Gist, and point to it from bl.ocks.org as I have done <a href="http://bl.ocks.org/datamusing/d353dd63e013448727b4">here</a>. </li>
+</ul>
+
+<p>~ FIN ~ </p>
+
+]]></content>
+  </entry>
+  
+</feed>
