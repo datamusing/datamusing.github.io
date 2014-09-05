@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dimple.js, | Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/blog/categories/dimple-dot-js/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2014-09-04T18:38:30-07:00</updated>
+  <updated>2014-09-04T18:39:03-07:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -30,7 +30,7 @@
 
 <h2 id="the--2500-square-degree-spt-sz-cluster-sample">The  2500 square-degree SPT-SZ Cluster Sample</h2>
 
-<p>On September 2, 2014 the South Pole Telescope (SPT) collaboration published a paper on the arXiv entitled <em>Galaxy Clusters Discovered via the Sunyaev-Zel’dovich Effect in the 2500-square-degree SPT-SZ survey</em> <a href="http://arxiv.org/abs/1409.0850">(Bleem et al. 2014)</a>.  Incidentally, the work was led by Lindsey Bleem  whom I had the pleasure to interact with as  a fellow postdoc at the Argonne National Laboratory. <img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/sptpaper/bleemEtAl.png" width="400" height="200">
+<p>On September 2, 2014 the South Pole Telescope (SPT) collaboration published a paper on the arXiv entitled <em>Galaxy Clusters Discovered via the Sunyaev-Zel’dovich Effect in the 2500-square-degree SPT-SZ survey</em> <a href="http://arxiv.org/abs/1409.0850">(Bleem et al. 2014)</a>.  Incidentally, the work was led by Lindsey Bleem  whom I had the pleasure to interact with as  a fellow postdoc at the Argonne National Laboratory. {%img right https://dl.dropboxusercontent.com/u/18915298/blog/sptpaper/bleemEtAl.png   400 200 %}
  This paper represents solid work  of following up 677 Sunyaev-Zel’dovich (SZ) clusters detected (at more than 4.5-$\sigma$ significance) by the temperature decrements they cause in the 95 and 150 GHz cosmic microwave background (CMB) maps. To confirm  these detections,  ground- and space-based imaging  was used to find their optical and near-infrared (NIR) counterparts. In 516 of the 677 candidates, the counterparts were found and a redshift could be derived. Here is a plot from the paper showing the mass vs. redshift of these 516 clusters as black crosses. From each point on the figure, you can read off the the mass ($M_500$)  and the redshift of the cluster. But there is so much more information for each galaxy cluster: </p>
 
 <ul>
@@ -50,7 +50,7 @@ with different purposes in mind. </p>
 
 <p>Here they are:</p>
 
-<h2 id="visualization-1-i-am-more-in-interested-in-the-detection-significance-and-which-clusters-have-strong-lensing-andor-an-x-ray-counterparts">Visualization 1: I am more in interested in the detection significance, and which clusters have strong lensing and/or an X-ray counterparts</h2>
+<h2 id="visualization-1-i-am-more-interested-in-the-detection-significance-and-which-clusters-have-strong-lensing-andor-an-x-ray-counterparts">Visualization 1: I am more interested in the detection significance, and which clusters have strong lensing and/or an X-ray counterparts</h2>
 
 <p>Mouse over each bubble to activate the tooltip. </p>
 
@@ -80,73 +80,41 @@ which I am not going to belabor with here. Again, all other information is now n
 
 <p>The code is essentially about 30 lines of html:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="ni">&amp;lt;</span>div id=&quot;chartContainer&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://dimplejs.org/dist/dimple.v2.1.0.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">dimple</span><span class="p">.</span><span class="nx">newSvg</span><span class="p">(</span><span class="s2">&quot;#chartContainer&quot;</span><span class="p">,</span> <span class="mi">750</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">d3</span><span class="p">.</span><span class="nx">tsv</span><span class="p">(</span><span class="s2">&quot;spt_opt_labels.tsv&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">myChart</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">dimple</span><span class="p">.</span><span class="nx">chart</span><span class="p">(</span><span class="nx">svg</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>      <span class="nx">myChart</span><span class="p">.</span><span class="nx">setBounds</span><span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">445</span><span class="p">)</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">myChart</span><span class="p">.</span><span class="nx">addMeasureAxis</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;REDSHIFT&quot;</span><span class="p">);</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">myChart</span><span class="p">.</span><span class="nx">addMeasureAxis</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;M500 (1e14)&quot;</span><span class="p">);</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">myChart</span><span class="p">.</span><span class="nx">addMeasureAxis</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;XI&quot;</span><span class="p">);</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">myChart</span><span class="p">.</span><span class="nx">addSeries</span><span class="p">([</span><span class="s2">&quot;SPT_ID&quot;</span><span class="p">,</span><span class="s2">&quot;M500 (1e14)&quot;</span><span class="p">,</span><span class="s2">&quot;THETA_CORE&quot;</span><span class="p">,</span><span class="s2">&quot;YSZ&quot;</span><span class="p">,</span><span class="s2">&quot;XI&quot;</span><span class="p">,</span><span class="s2">&quot;LABEL&quot;</span><span class="p">],</span> <span class="nx">dimple</span><span class="p">.</span><span class="nx">plot</span><span class="p">.</span><span class="nx">bubble</span><span class="p">);</span>
-</span><span class='line'>      <span class="nx">s</span><span class="p">.</span><span class="nx">getTooltipText</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="k">return</span> <span class="p">[</span>
-</span><span class='line'>                    <span class="s2">&quot;Cluster ID: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-</span><span class='line'>                    <span class="s2">&quot;Mass M500 (x 10^14) = &quot;</span> <span class="o">+</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">1</span><span class="p">]).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-</span><span class='line'>                    <span class="s2">&quot;Core radius: &quot;</span> <span class="o">+</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">2</span><span class="p">]).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-</span><span class='line'>                    <span class="s2">&quot;Y_SZ = &quot;</span> <span class="o">+</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">3</span><span class="p">]).</span><span class="nx">toExponential</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
-</span><span class='line'>                    <span class="s2">&quot;Detection significance = &quot;</span><span class="o">+</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">aggField</span><span class="p">[</span><span class="mi">4</span><span class="p">]).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</span><span class='line'>                <span class="p">];</span>
-</span><span class='line'>      <span class="p">};</span><span class="nt">&lt;/script&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span>  z.overrideMax = 150.0;
-</span><span class='line'>  var myLegend = myChart.addLegend(540, 30, 150, 50, &quot;right&quot;);
-</span><span class='line'>  myLegend.fontSize = &quot;10px&quot;;
-</span><span class='line'>  myChart.assignColor(&quot;SZ+SL+XRAY&quot;, &quot;#a6611a&quot;,0.8);
-</span><span class='line'>  myChart.assignColor(&quot;SZ+XRAY&quot;, &quot;#dfc27d&quot;);
-</span><span class='line'>  myChart.assignColor(&quot;SZ&quot;, &quot;#80cdc1&quot;);
-</span><span class='line'>  myChart.assignColor(&quot;SZ+SL&quot;, &quot;#018571&quot;);
-</span><span class='line'>  myChart.draw();
-</span><span class='line'>});   <span class="ni">&amp;lt;</span>/script<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'><span class="nt">&lt;p&gt;</span><span class="ni">&amp;lt;</span>/div<span class="ni">&amp;gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:html %}
+&lt;div id="chartContainer"&gt;
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.1.0.min.js"></script>
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 750, 500);
+    d3.tsv("spt_opt_labels.tsv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(95, 25, 600, 445)
+      var x = myChart.addMeasureAxis("x", "REDSHIFT");
+      var y = myChart.addMeasureAxis("y", "M500 (1e14)");
+      var z = myChart.addMeasureAxis("z", "XI");
+      var s = myChart.addSeries(["SPT_ID","M500 (1e14)","THETA_CORE","YSZ","XI","LABEL"], dimple.plot.bubble);
+      s.getTooltipText = function (e) {
+                return [
+                    "Cluster ID: " + e.aggField[0],
+                    "Mass M500 (x 10^14) = " + parseFloat(e.aggField[1]).toFixed(2),
+                    "Core radius: " + parseFloat(e.aggField[2]).toFixed(2),
+                    "Y_SZ = " + parseFloat(e.aggField[3]).toExponential(2),
+                    "Detection significance = "+parseFloat(e.aggField[4]).toFixed(2)
+                ];
+      };</script></p>
+
+<pre><code>  z.overrideMax = 150.0;
+  var myLegend = myChart.addLegend(540, 30, 150, 50, "right");
+  myLegend.fontSize = "10px";
+  myChart.assignColor("SZ+SL+XRAY", "#a6611a",0.8);
+  myChart.assignColor("SZ+XRAY", "#dfc27d");
+  myChart.assignColor("SZ", "#80cdc1");
+  myChart.assignColor("SZ+SL", "#018571");
+  myChart.draw();
+});   &lt;/script&gt;
+</code></pre>
+<p>&lt;/div&gt;
+{% endcodeblock %}</p>
 
 <p>And that is all you need, to produce this powerful graphic!</p>
 
@@ -161,16 +129,18 @@ Here is my <a href="https://gist.github.com/datamusing/d353dd63e013448727b4">gis
   <li>Clone my gist using</li>
 </ul>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone https://gist.github.com/d353dd63e013448727b4.git</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{%codeblock%}
+ $ git clone https://gist.github.com/d353dd63e013448727b4.git
+ {%endcodeblock%}</p>
 
 <ul>
   <li>Inside the gist directory, you will find all necessary files. The main file to look at is  <code>index.html</code></li>
   <li>Fire up a server from inside that directory using:</li>
 </ul>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ python -m SimpleHTTPServer 9999</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{%codeblock%}
+ $ python -m SimpleHTTPServer 9999
+ {%endcodeblock%}</p>
 
 <ul>
   <li>Point your browser (no IE8 please!) to localhost:9999</li>
