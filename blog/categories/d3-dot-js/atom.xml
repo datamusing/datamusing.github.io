@@ -4,7 +4,7 @@
   <title><![CDATA[Category: d3.js, | Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/blog/categories/d3-dot-js/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2014-09-04T18:22:10-07:00</updated>
+  <updated>2014-09-04T18:38:30-07:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -58,7 +58,7 @@ with different purposes in mind. </p>
 
 <p>What I have done in the above plot is make the size of the bubble for each cluster proportional to its detection significance. You can immediately see that  bubbles get bigger as you go higher in the plot (along the mass axis), showing that more massive clusters were detected much more easily (that is a characteristic of the SZ effect). Then, I also color coded the ones that have only SZ, SZ+SL, SZ+XRAY, and SZ+SL+XRAY so that you can quickly investigate the properties of any specific class of cluster (e.g. the strong lensing clusters). Note that all the other information are contained in the tooltip, as you hover over the cluster. </p>
 
-<h2 id="visualization-2-i-am-more-in-interested-in-the-size-and-flux-of-the-clusters-and-visually-see-if-there-are-trends">Visualization 2: I am more in interested in the size and flux of the clusters, and visually see if there are trends.</h2>
+<h2 id="visualization-2-i-am-more-interested-in-the-size-and-flux-of-the-clusters-and-visually-see-if-there-are-trends">Visualization 2: I am more interested in the size and flux of the clusters, and visually see if there are trends.</h2>
 
 <iframe width="100%" height="600" frameborder="0" src="http://bl.ocks.org/datamusing/raw/19ed8e9811c11a4ed9be/" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>
 
