@@ -4,7 +4,7 @@
   <title><![CDATA[Category: pandas | Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/blog/categories/pandas/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2014-09-04T18:59:43-07:00</updated>
+  <updated>2014-09-06T17:24:15-07:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -38,7 +38,7 @@
   <li>the  detection significance ($\xi$)</li>
   <li>whether the cluster has an x-ray companion (XRAY)</li>
   <li>whether the cluster exhibits strong lensing (SL)</li>
-  <li>the integrated Componization parameter, $Y_{SZ}$. </li>
+  <li>the integrated Comptonization parameter, $Y_{SZ}$. </li>
   <li>the  core radius ($\theta_c$)  (a measure of the size of the central core)</li>
 </ul>
 
