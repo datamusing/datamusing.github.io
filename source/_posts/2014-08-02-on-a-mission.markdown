@@ -15,7 +15,7 @@ SAN FRANCISCO, CA --- Whether its the yummy _focaccia de recco_ at __Farina__, t
 The Mission is my neighborhood.  I endearingly call it  the "SF Foodie Central", not just because some of the best fine dinning restaurants  happen to be here, but also because smaller, fiercely independent purveyors of fine delicacies like _Craftsman & Wolves_, _Dandelion Chocolate_, _Tartine Bakery_, _Bi-Rite Creamery_,  _Four Barrel Coffee_, and _Ritual Roasters_  keep the food scene vibrant and at its delicious best! And then, there is the Mission Mexican food, which is hands down the best in the city. 
   <!--more--> 
   
-So it was quite predictable that when analyzing [OpenTable](www.opentable.com ) diner reviews for a data science concept project, I chose to go after the restaurants in the Mission District first. The result of this analysis is a list of _the most talked about dishes_ in the restaurants. 
+So it was quite predictable that when analyzing [OpenTable](http://www.opentable.com) diner reviews for a data science concept project, I chose to go after the restaurants in the Mission District first. The result of this analysis is a list of _the most talked about dishes_ in the restaurants. 
 
 The impatient readers who do not want the algorithm to stand between them and the dishes can scroll down straight to the bottom of the page where all will be revealed.  The inquisitive ones please read on. 
 
@@ -32,6 +32,6 @@ And now lets turn to the results!
 
 Although for each restaurant in the Mission, I could surface multiple dishes, I decided to only show the top (as in most mentioned) dish per restaurant. Note that this is very beta, and we can do so much more in terms of actually figuring out if the dish is being talked about in a positive manner and then count it in, etc. Those will come in due course! Meanwhile, here are the results (_scroll to center the iframe on your screen and scroll within the frame from one restaurant to the next_).  ENJOY! 
 
-<iframe width='100%' height='768' frameborder='0' src='http://bl.ocks.org/anonymous/raw/5621ce91e097a903d0b8' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+<iframe width='100%' height='768' frameborder='0' src='http://bl.ocks.org/anonymous/raw/dde021cbd234a015c111' allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
  
