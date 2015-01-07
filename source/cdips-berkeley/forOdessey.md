@@ -25,7 +25,8 @@ On Valencia Street between 16th and 17th street, with its unmistakable blue faca
 
 ##Beef Tartare on Koji Toast
 ![tartare](http://s3.amazonaws.com/foodspotting-ec2/reviews/4431033/thumb_600.jpg?1390797587?1407303742)
-To quote a diner, "The beef tartare on Koji toast with bottarga was brilliant". Locally sourced beef with _Koji_ (Japanese kojia culture made by growing different fungi on cooked grains or legumes in a warm, humid place).Koji is also folded into the sourdough batter to give it that distinctive umami!
+
+To quote a diner, "The beef tartare on Koji toast with bottarga was brilliant". Locally sourced beef with _Koji_  (Japanese koji: a culture made by growing different fungi on cooked grains or legumes in a warm, humid place). Koji is also folded into the sourdough batter to give it that distinctive umami!
 
 
 
