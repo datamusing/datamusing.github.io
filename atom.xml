@@ -4,7 +4,7 @@
   <title><![CDATA[Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2014-09-09T18:52:51-07:00</updated>
+  <updated>2015-01-06T23:46:30-08:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -12,6 +12,102 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RecSys 2014: Key Takeaways for Me...]]></title>
+    <link href="http://datamusing.github.io/blog/2014/10/16/recsys-2014-what-i-learned-dot-dot-dot/"/>
+    <updated>2014-10-16T08:23:01-07:00</updated>
+    <id>http://datamusing.github.io/blog/2014/10/16/recsys-2014-what-i-learned-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>The weeklong  RecSys 2014 conference that took place from October 6-10 at the calm quarters of Foster City (the next one is in Vienna by the way, a slightly more exciting venue), was tiring, but left me invigorated with so many new ideas. Here are some highlights of the conference, with a very personal bias toward presentations that made a direct connect to the problems I am working on currently. </p>
+
+<p>I felt that the overarching theme of the conference was moving beyond just rating or interactions as signals for recommendation systems,  and moving toward a more unified approach that included  <strong>content</strong> ,  <strong>context</strong>,   <strong>feedback</strong>, and <strong>human input</strong>  while making recommendations. </p>
+
+<p>Xavier Amatrarian (@xamat) of NetFlix gave an amazing overview of the recommendation space, which sort of set the tone for the rest of the conference.</p>
+
+<h2 id="xavier-amatrarian">Xavier Amatrarian</h2>
+
+<ul>
+  <li>Rating is being used as a explanation  (based on your … )</li>
+  <li>Social explanation </li>
+  <li>Rating -&gt; Ranking -&gt; Page Optimization -&gt; Context-aware recommendations </li>
+</ul>
+
+<h2 id="clustering">Clustering</h2>
+<p>New approach: Non-parametric Bayesian (Chinese restaurant) - Alex Smola talk 	KDD </p>
+
+<h2 id="content-based">Content Based</h2>
+<p>“Even a Few Ratings … “ <a href="http://dl.acm.org/citation.cfm?id=1639731">paper</a>. </p>
+
+<h2 id="hybrid-approach-way-better-than-just-content-or-collab">Hybrid Approach way better than just content or collab.</h2>
+<p><a href="http://www.cs.northwestern.edu/~pardo/courses/mmml/papers/collaborative_filtering/a_framework_for_content_based_demographic_filtering_AIR99.pdf">This paper</a> talks about hybrid methods when data is sparse. </p>
+
+<h2 id="ranking-metrics">Ranking metrics:</h2>
+<ul>
+  <li>NDCG </li>
+  <li>MRR </li>
+  <li>FCP </li>
+</ul>
+
+<p>Domain/problem specific. </p>
+
+<ul>
+  <li>Pointwise </li>
+  <li>Pairwise  </li>
+  <li>Listwise:
+    <ul>
+      <li>LambdaMart </li>
+      <li>CLiMF or TFMAP </li>
+      <li>SVM-MAP </li>
+    </ul>
+  </li>
+</ul>
+
+<p>SimRank  (Jeh &amp; Widom 2002) </p>
+
+<p>Similarity Ensemble </p>
+
+<h3 id="deep-learning">Deep Learning</h3>
+<p>Recurrent Network </p>
+
+<h3 id="social-and-trust-based-recommenders">Social and Trust-Based recommenders</h3>
+<p>Friendships can be fed into collaborative filtering (user-user similarity).</p>
+
+<p>Demographic methods</p>
+
+<p>Page Composition </p>
+
+<p><a href="http://www.cs.cmu.edu/~amahmed/papers/SVCM_WSDM12.pdf">Paper</a></p>
+
+<h3 id="tensorfactorizations">Tensor/Factorizations</h3>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Learning by example: Bayesian Sets]]></title>
+    <link href="http://datamusing.github.io/blog/2014/09/11/learning-by-example-bayesian-sets/"/>
+    <updated>2014-09-11T18:59:51-07:00</updated>
+    <id>http://datamusing.github.io/blog/2014/09/11/learning-by-example-bayesian-sets</id>
+    <content type="html"><![CDATA[<p>Bayes Sets is an algorithm that learns by example - so to speak. The main idea is as follows: In a large collection of items $D$, there usually exists smaller subsets 
+of similar items into which items cluster. Suppose $D_c$ is one such subset. Given a small number of examples from $D_c$, the problem is to complete the set $D_c$. Using 
+Bayesian language, given a small number of items ${x}\in D_c$ and any item $x’$ from $D$, how likely is it that $x’ \in D_c$ i.e. compute $p(x’| D_c)/p(x’)$. We can compute
+this score for every item in $D$ and rank them in order of decreasing score. </p>
+
+<p>To give an example, given the set of all movies on IMDB, cult horror movies will be such a subset. However, we may not have the  genre information at all, yet this 
+subset will be distinctive in that the horror movie buffs will all rate them highly.  The problem is given, say, only two examples of the set $D_c$ (say, the Texas Chainsaw Massacre, and The Evil Dead), how to algothimically complete the set $D_c$ of all cult horror movies. This is what Bayes Set algorithm attempts to achieve. </p>
+
+<h2 id="preparing-the-data">Preparing the data</h2>
+
+<p>The Bayes Sets algorithm expects the data in a binarized matrix of size $n<em>{items}$ $\times n</em>{\text{features}}$ where each entry is either one or zero. To continue with our movie  example, we can represent the data as a $n<em>{items} \times n</em>{users}$ matrix where are entries are 1.0 if the movie has been rated higher than 3 by that user, and zero 
+otherwise. This greatly reduces the memory usage, as the matrix can be stored as a sparse matrix. </p>
+
+<p>For this example, I have generated a data file in a JSON format, where the file has the structure: </p>
+
+<p><code>{'movie_0':['user_id_11', 'user_id_23', 'user_id_45', ... ], 'movie_1':['user_123', 'user_34', 'user_id_45', ...], ...}</code> </p>
+
+<p>for each  movie, the features are the user_id s that have rated the movie higher than 3. </p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fun with interactive visualizations in astrophysics]]></title>
