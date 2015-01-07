@@ -4,7 +4,7 @@
   <title><![CDATA[Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2015-01-07T00:00:05-08:00</updated>
+  <updated>2015-01-07T01:44:19-08:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -12,6 +12,159 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Implicit Feedback and Collaborative Filtering]]></title>
+    <link href="http://datamusing.github.io/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/"/>
+    <updated>2015-01-07T00:15:33-08:00</updated>
+    <id>http://datamusing.github.io/blog/2015/01/07/implicit-feedback-and-collaborative-filtering</id>
+    <content type="html"><![CDATA[<p>SAN FRANCISCO, CA — I have been re-reading  <a href="http://dl.acm.org/citation.cfm?id=1511352" title="Implicit Feedback Paper">this classic paper</a>, and was impressed both by its clarity and simplicity. </p>
+
+<blockquote>
+  <p>Often most powerful ideas are also the most elegant! </p>
+</blockquote>
+
+<p>Here, I will try to summarize the technique, with just enough math thrown in to facilitate understanding from a coding perspective. 
+ <script type="math/tex">\def\RR{\bf R}</script>
+<script type="math/tex">\def\bx{\bf{x}}</script>
+<script type="math/tex">\def\by{\bf{y}}</script>
+<script type="math/tex">\renewcommand{\bra}[1]{\left\langle{ #1}\right\vert}</script>
+<script type="math/tex">\renewcommand{\bbra}[1]{\left\langle{ #1}\right.}</script>
+<script type="math/tex">\renewcommand{\ket}[1]{\left\vert{ #1}\right\rangle}</script></p>
+
+<p><img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/implicitCollab/implicit_small.png" width="300" height="300" /></p>
+
+<p><strong>Good Old Explicit</strong></p>
+
+<p>The classic problem of collaborative filtering (CF) is the one with explicit feedback: given a set of users <script type="math/tex">u</script> and items <script type="math/tex">i</script> observe the user-item interaction explicitly through, say, a rating <script type="math/tex">r_{ui}</script>, and then predict the ratings for the user-item pairs that are unknown. If we have <script type="math/tex">m</script> users and <script type="math/tex">n</script> items, we can envision an <script type="math/tex">m\times n</script> ratings matrix <script type="math/tex">\bf{R}</script> such that each row corresponds to a given user and non-empty elements in that row correspond to the ratings that this user has given to 
+the items. Because each user would typically rate a small proportion of the items, this matrix will be sparse. </p>
+
+<p>The aim of  Recommender Systems is to fill in the blanks of this matrix with predicted ratings using the information at hand: <em>matrix completion</em>. <!-- more --> The popular method of accomplishing this is through matrix factorization whereby the ratings matrix (that can routinely be a million users by a million items) is expressed as a product of two lower dimensional matrices, a user-features matrix and a item-features matrix. Typically, one uses 50-200 features. </p>
+
+<p>Let us introduce a bit of notation. I borrow a bit of notation from quantum mechanics and write vectors as <script type="math/tex">\vert \bx \rangle</script>, such that it understood to be a column vector. This simplifies some algebraic manipulations later. The latent feature vector of user <script type="math/tex">u</script> is denoted as: </p>
+
+<script type="math/tex; mode=display">\ket{ \bx_u} \equiv \begin{bmatrix} x_u^0 \\ x_u^1 \\ ... \\x_u^{f-1} \end{bmatrix}</script>
+
+<p>where the superscripts denote the indices of the elements. 
+Its transpose is denoted by the row vector:</p>
+
+<script type="math/tex; mode=display">\bra{\bx_u} \equiv {\bx_u}^{T}\equiv \begin{bmatrix} x_u^0,  x_u^1, ..., x_u^{f-1} \end{bmatrix}  </script>
+
+<p>so that the squared norm can be written as the inner product: <script type="math/tex"> \bbra{\bx_u}\ket{\bx_u}</script>. 
+Similarly, we can write the latent feature vector for item <script type="math/tex">i</script>, as </p>
+
+<script type="math/tex; mode=display"> \ket{ \by_i} \equiv \begin{bmatrix} y_i^0 \\ y_i^1 \\ ... \\y_i^{f-1} \end{bmatrix}</script>
+
+<p>The problem is formulated in terms of minimizing an objective function defined as a sum of residuals from knows ratings:</p>
+
+<script type="math/tex; mode=display">\min_{x_*, y_*} \sum_{u,i; \text{ $r_{ui}$ known}}\left(r_{ui} -\bbra{\bx_u}\ket{\by_i}\right)^2 + \lambda (\bbra{\bx_u}\ket{\bx_u} + \bbra{\by_i}\ket{\by_i}  ) </script>
+
+<p>In other words, solve for the latent factors until the squared difference between the explicit and predicted ratings is minimized. The <script type="math/tex">\lambda</script> term adds regularization to prevent overfitting. By merit of the sparsity of the ratings matrix this problem can be efficiently solved, typically using a Stochastic Gradient Descent type algorithm. </p>
+
+<h2 id="why-implicit">Why Implicit?</h2>
+
+<p>The sparsity of the ratings matrix is a good thing, but it is also its problem. In most settings, it is very hard to get a large fraction of users rate a large fraction of the items. So there might just be too little signal if we stuck to explicit ratings only. However the user item interaction can happen in the many different ways other than a rating. A user may be searching for an item (say a restaurant) on the web, or listening to/skipping a track, or clicking on links in an email campaign. and so on and so forth. Usually this type of implicit signals show the attachment of an user to an item through some sort of frequency.  These actions do not explicitly state or quantify any preference of the user for the item, but instead gives us confidence about the user’s opinion. And we usually have plenty more of these signals than explicit ratings. </p>
+
+<p>Consider, for example, listening behavior to songs. When I listen to music on a streaming service, I rarely ever rate a song that I like or dislike. But more often I skip a song, or listen only halfway through it if dislike it. If I really like a song, I come back to it often. Even if I would like to rate a song, sometimes it is simply not possible, as I might be driving, or the song might be playing through sonos, roku or some system which does not allow for a easy rating interface. So, to infer my musical taste profile, my listens, my repeat listens, my skips, and fraction of tracks listened to, etc. are far more valuable signals than explicit ratings. This is what this paper attempted to incorporate within the CF framework.</p>
+
+<h2 id="the-formulation">The Formulation</h2>
+
+<p>To keep it concrete, let us continue with the music streaming example, and lets say that we are only going to use the number of times a user has listened to a track (track listen count) as the only signal. For user <script type="math/tex">u</script> and track <script type="math/tex">i</script>, let us reuse <script type="math/tex">r_{ui}</script> to denote that number. We begin by defining a <em>preference</em> <script type="math/tex">p_{ui}</script> of the user <script type="math/tex">u</script> to track <script type="math/tex">i</script> such that it is unity when the user has at least one listen and zero if the user has not interacted with the track at all:</p>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+p_{ui} = \begin{cases} 1. &\mbox{if } r_{ui} > 0 \\ 0. & \mbox{otherwise}. \end{cases} . %]]&gt;</script>
+
+<p>So, at the end, the task of the recommendation system will be to predict the preference for the unseen tracks. Next, we use the track listen count to define a <em>confidence</em> <script type="math/tex">c_{ui}</script> of the liking of the track by the user:</p>
+
+<script type="math/tex; mode=display">c_{ui} =  1 + \alpha r_{ui} .</script>
+
+<p>This is done in sort of an ad hoc way, and the confidence could de  defined in many other ways as long as it is a monotonic function of the frequency.  The confidence has a base value of <script type="math/tex">1</script> for all user-item pairs and it gets stronger as the number of listens increase. So a high value of confidence <script type="math/tex">c_{ui}</script> would mean that for that user-track pair these is a lot less noise about the preference of that particular user to that track. Therefore, it means that it is more important for the algorithm to predict a preference closer to unity for the pairs where the confidence is high. This leads to the following analog of explicit objective function minimization problem:</p>
+
+<script type="math/tex; mode=display"> \min_{x_*, y_*} \sum_{u,i} c_{ui} \left( p_{ui} - \bbra{\bx_u}\ket{\by_i} \right)^2 + \lambda\left(\sum_u \bbra{\bx_u}\ket{\bx_u} + \sum_i \bbra{\by_i}\ket{\by_i} \right) . </script>
+
+<p>A big <script type="math/tex">c_{ui}</script> means that the prediction <script type="math/tex">\bbra{\bx_u}\ket{\by_i}</script> has to be that much closer to <script type="math/tex">p_{ui}</script> for that term not to contribute a lot to the sum.</p>
+
+<p>But suddenly now, the problem is no longer sparse, and the sum contains all <script type="math/tex">m\times n</script> terms. </p>
+
+<p><strong>How to solve this, then? </strong></p>
+
+<p>Linear algebra tricks come to the rescue! </p>
+
+<p>First, note that if the user latent factors are held constant the problem is quadratic in the item latent factors, and vice versa. 
+This leads to the alternating least squares  (ALS) approach for this problem. But that by itself does not solve the  lack of sparsity issue. </p>
+
+<p>The ALS proceeds in two steps:</p>
+
+<p><em>STEP 1 of ALS:</em> First, we hold the item latent vectors <script type="math/tex">\ket{\by_i}</script> fixed, and solve for the user latent vectors <script type="math/tex">\ket{\bx_u}</script>. For a given user <script type="math/tex">u_0</script>, the optimization function can be re-written in the matrix notation. 
+First we define a <script type="math/tex">n\times f</script> item-factor matrix as:</p>
+
+<script type="math/tex; mode=display">\bf{Y} = \begin{bmatrix} \bra{\by_0} \\ \bra{\by_1}\\ ... \\ \bra{\by_{n-1}} \end{bmatrix}</script>
+
+<p>Next, we define a vector of preferences for the user <script type="math/tex">u_0</script> as: </p>
+
+<script type="math/tex; mode=display">\ket{ {\bf{p}}_{u_0} } =  \begin{bmatrix} p_{u_{00} }  \\ p_{u_{01} }\\ ... \\  p_{u_{0 (n-1) }  }  \end{bmatrix}</script>
+
+<p>and an <script type="math/tex">n \times n</script> diagonal matrix of confidence in items for this user <script type="math/tex"> {\bf C}^{u_0} </script>  as:</p>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+ {\bf C}^{u_0} = \begin{bmatrix} c_{u_{00}} & 0 & 0 & 0 & ... & 0 \\ 0 & c_{u_{01}} & 0 & 0 & ... &0\\ ... \\ ... \\ 0 & 0 & 0 & 0 & ... & c_{u_{0 (n-1) }}\end{bmatrix}. %]]&gt;</script>
+
+<p>With these, the relevant part of the objective function can be rewritten as:</p>
+
+<script type="math/tex; mode=display"> \left[\left(\ket{ {\bf p}_{u_0}} - {\bf Y} \ket{ \bx_{u_0}} \right)^T {\bf C}^{u_0}\left(\ket{ {\bf p}_{u_0} } - {\bf Y} \ket{ \bx_{u_0} } \right) \right] + \lambda \bbra{\bx_{u_0}}\ket{\bx_{u_0}}. </script>
+
+<p>To minimize this, we set the derivative w.r.t. <script type="math/tex">\ket{ \bx_{u_0}}</script> to zero, and we find the solution (see derivation at the bottom) as</p>
+
+<script type="math/tex; mode=display"> \ket{ \bx_{u_0}} = \left( {\bf Y}^T {\bf C}^{u_0} {\bf Y} + \lambda  {\bf I}  \right)^{-1}  {\bf Y}^{T} {\bf C}^{u_0} \ket{ {\bf p}_{u_0}}. \text{..... (1)}</script>
+
+<p><em>STEP 2 of ALS:</em> In the next step, in an exactly analogous fashion, we can hold the user latent vectors fixed and vary the item latent vectors to minimize the cost function. We define an <script type="math/tex">m\times f</script> user-factor matrix <script type="math/tex">{\bf X}</script>, an <script type="math/tex">m\times m</script> diagonal matrix <script type="math/tex">{\bf C}^{i_0}</script>, and a preference vector <script type="math/tex">\ket{ {\bf p}_{i_0}}</script> for all users against item <script type="math/tex">i_0</script>. We end up with the solution: </p>
+
+<script type="math/tex; mode=display">\ket{ \by_{i_0}} = \left( {\bf X}^T {\bf C}^{i_0} {\bf X} + \lambda  {\bf I}  \right)^{-1}  {\bf X}^{T} {\bf C}^{i_0} \ket{ {\bf p}_{i_0}}.  \text{..... (2)} </script>
+
+<p>The algorithm then alternates between STEP 1 and STEP 2 until the latent factors converge (usually <script type="math/tex">\sim 10</script> sweeps). </p>
+
+<p><strong>Computational Complexity </strong></p>
+
+<p>Going back to STEP 1, we first note that where <script type="math/tex">{\bf C}^{u}_{ii}</script> is unity <script type="math/tex">p_{ui}</script> is zero by construction. Therefore for each of the <script type="math/tex">m</script> users, <script type="math/tex">{\bf C}^{u} \ket{ {\bf p}_{u}}</script> has only <script type="math/tex">n_u</script> non-zero terms where <script type="math/tex">n_u</script> are the number of items for which the user <script type="math/tex">u</script> has preference equal to unity, and typically <script type="math/tex">n_u  \ll n</script>. The main bottleneck is the term <script type="math/tex"> {\bf Y}^T {\bf C}^{u} {\bf Y}</script> whose naïve calculation would require time <script type="math/tex">O(f^2 n)</script> for each user. Speedup can be obtained just by rewriting this term as</p>
+
+<script type="math/tex; mode=display">{\bf Y}^T {\bf C}^{u} {\bf Y} =  {\bf Y}^T\left({\bf C}^u - {\bf I}\right) {\bf Y} + {\bf Y}^T {\bf Y}. </script>
+
+<p>The beauty of this expression is that the <script type="math/tex">f\times f</script> matrix <script type="math/tex">{\bf Y}^T {\bf Y}</script> has to be calculated only once (being independent of the user), and <script type="math/tex">\left({\bf C}^u - {\bf I}\right)</script> is non-zero for only those <script type="math/tex">n_u</script> items that the user has expressed any preference for! Therefore this part of the calculation reduces vastly in complexity to <script type="math/tex">O(f^2 n_u)</script> for each of the <script type="math/tex">m</script> users. </p>
+
+<p>An analogous trick works for STEP 2 as well! </p>
+
+<p>Once the solution converges, the predicted preference of a user for an item can be computed as</p>
+
+<script type="math/tex; mode=display"> \hat{p}_{ui} = \bbra{\bx_u}\ket{\by_i}.</script>
+
+<p>Sort the tracks by this value, and voila, you have recommended tracks for every listener in your sample! </p>
+
+<p><strong>Another Trick! </strong></p>
+
+<p>Suppose there are 100 million songs. If we are using 200 features, then <script type="math/tex">{\bf Y}</script> has dimension <script type="math/tex">10^8 \times 200</script>. 
+Therefore, <script type="math/tex">{\bf Y}^T {\bf Y}</script> is not a trivial multiplication. Conventional matrix multiplication will take a row of <script type="math/tex">{\bf Y}^T</script> that is 100 million wide and multiply it with a column of <script type="math/tex">{\bf Y}</script> that is also 100 million tall. Such computations can be costly and slow. However the way we wrote down <script type="math/tex">{\bf Y}</script> in terms of the vectors <script type="math/tex">\ket{\by}</script> gives us another way to compute this: 
+<script type="math/tex">% &lt;![CDATA[
+{\bf Y}^T {\bf Y} = \begin{bmatrix} \ket{\by_0} & \ket{\by_1} & ... & \ket{\by_{n-1}} \end{bmatrix}  \begin{bmatrix} \bra{\by_0} \\ \bra{\by_1}\\ ... \\ \bra{\by_{n-1}} \end{bmatrix}\\ = \ket{\by_0}\bra{\by_0}  +  \ket{\by_1}\bra{\by_1} + ...+ \ket{\by_{n-1}}\bra{\by_{n-1}}  %]]&gt;</script> 
+i.e. the matrix product is the sum of the outer products of the rows, each of which is <script type="math/tex">200 \times 200</script> and being independent of each other can be computed on different nodes and then added back together! </p>
+
+<p><strong>Quick derivation of the update rule </strong></p>
+
+<p>We expand the cost function by propagating the transpose and then multiplying through :</p>
+
+<script type="math/tex; mode=display">\left[\left(\ket{ {\bf p}_{u_0} } - {\bf Y} \ket{\bx_{u_0}} \right)^T {\bf C}^{u_0}\left(\ket{ {\bf p}_{u_0}} - {\bf Y} \ket{ \bx_{u_0}} \right) \right] + \lambda \bbra{\bx_{u_0}}\ket{\bx_{u_0}} \\ = \left(\bra{ {\bf p}_{u_0}} - \bra{\bx_{u_0}}{\bf Y}^T \right) {\bf C}^{u_0}\left(\ket{ {\bf p}_{u_0}} - {\bf Y} \ket{\bx_{u_0}} \right)  + \lambda \bbra{\bx_{u_0}}\ket{ \bx_{u_0}} \\ = \bra{ {\bf p}_{u_0}}  {\bf C}^{u_0} \ket{ {\bf p}_{u_0}}  - \bra{\bx_{u_0}} {\bf Y}^T {\bf C}^{u_0} \ket{ {\bf p}_{u_0}} - \bra{ {\bf p}_{u_0}}  {\bf C}^{u_0} {\bf Y} \ket{ \bx_{u_0}} +\bra{\bx_{u_0}}{\bf Y}^T {\bf C}^{u_0}  {\bf Y} \ket{ \bx_{u_0}}  + \lambda \bbra{\bx_{u_0}}\ket{\bx_{u_0}}  </script>
+
+<p>Taking the derivative w.r.t. <script type="math/tex">\bra{ \bx_{u_0}} </script> and setting it to zero gives:</p>
+
+<script type="math/tex; mode=display"> - {\bf Y}^T {\bf C}^{u_0} \ket{ {\bf p}_{u_0}} + {\bf Y}^T {\bf C}^{u_0}  {\bf Y} \ket{ \bx_{u_0}} + \lambda {\bf I} \ket{ \bx_{u_0}} = 0,</script>
+
+<p>which implies</p>
+
+<script type="math/tex; mode=display"> \left({\bf Y}^T {\bf C}^{u_0}  {\bf Y} + \lambda {\bf I} \right)\ket{\bx_{u_0}} =  {\bf Y}^T {\bf C}^{u_0} \ket{ {\bf p}_{u_0}} </script>
+
+<p>that immediately gives us the solution (1) written above. </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fun with interactive visualizations in astrophysics]]></title>

@@ -9,7 +9,7 @@
 	<meta name="author" content="Sudeep Das">
 
 	
-	<meta name="description" content="Sep 3rd, 2014 astrophysics,, d3.js,, dimple.js,, interactive,, pandas, visualization, Fun With Interactive Visualizations in Astrophysics Recently, &hellip;">
+	<meta name="description" content="Jan 7th, 2015 Implicit Feedback and Collaborative Filtering SAN FRANCISCO, CA — I have been re-reading this classic paper, and was impressed both by &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,6 +110,57 @@ MathJax.Hub.Config({
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-07T00:15:33-08:00" data-updated="true" itemprop="datePublished">Jan 7<sup>th</sup>, 2015</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/" itemprop="url">Implicit Feedback and Collaborative Filtering</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>SAN FRANCISCO, CA — I have been re-reading  <a href="http://dl.acm.org/citation.cfm?id=1511352" title="Implicit Feedback Paper">this classic paper</a>, and was impressed both by its clarity and simplicity. </p>
+
+<blockquote>
+  <p>Often most powerful ideas are also the most elegant! </p>
+</blockquote>
+
+<p>Here, I will try to summarize the technique, with just enough math thrown in to facilitate understanding from a coding perspective. 
+ <script type="math/tex">\def\RR{\bf R}</script>
+<script type="math/tex">\def\bx{\bf{x}}</script>
+<script type="math/tex">\def\by{\bf{y}}</script>
+<script type="math/tex">\renewcommand{\bra}[1]{\left\langle{ #1}\right\vert}</script>
+<script type="math/tex">\renewcommand{\bbra}[1]{\left\langle{ #1}\right.}</script>
+<script type="math/tex">\renewcommand{\ket}[1]{\left\vert{ #1}\right\rangle}</script></p>
+
+<p><img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/implicitCollab/implicit_small.png" width="300" height="300" /></p>
+
+<p><strong>Good Old Explicit</strong></p>
+
+<p>The classic problem of collaborative filtering (CF) is the one with explicit feedback: given a set of users <script type="math/tex">u</script> and items <script type="math/tex">i</script> observe the user-item interaction explicitly through, say, a rating <script type="math/tex">r_{ui}</script>, and then predict the ratings for the user-item pairs that are unknown. If we have <script type="math/tex">m</script> users and <script type="math/tex">n</script> items, we can envision an <script type="math/tex">m\times n</script> ratings matrix <script type="math/tex">\bf{R}</script> such that each row corresponds to a given user and non-empty elements in that row correspond to the ratings that this user has given to 
+the items. Because each user would typically rate a small proportion of the items, this matrix will be sparse. </p>
+
+<p>The aim of  Recommender Systems is to fill in the blanks of this matrix with predicted ratings using the information at hand: <em>matrix completion</em>. 
+		
+		<a href="/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
