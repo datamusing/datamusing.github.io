@@ -4,7 +4,7 @@
   <title><![CDATA[Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2015-01-07T01:44:19-08:00</updated>
+  <updated>2015-01-08T11:47:41-08:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -162,6 +162,17 @@ i.e. the matrix product is the sum of the outer products of the rows, each of wh
 <script type="math/tex; mode=display"> \left({\bf Y}^T {\bf C}^{u_0}  {\bf Y} + \lambda {\bf I} \right)\ket{\bx_{u_0}} =  {\bf Y}^T {\bf C}^{u_0} \ket{ {\bf p}_{u_0}} </script>
 
 <p>that immediately gives us the solution (1) written above. </p>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58361665-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
 ]]></content>
   </entry>
