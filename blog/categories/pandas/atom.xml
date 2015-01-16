@@ -4,7 +4,7 @@
   <title><![CDATA[Category: pandas | Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/blog/categories/pandas/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2015-01-08T18:16:16-08:00</updated>
+  <updated>2015-01-16T01:09:19-08:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -18,7 +18,7 @@
     <link href="http://datamusing.github.io/blog/2014/09/03/the-case-for-interactive-visualizations-in-astrophysics/"/>
     <updated>2014-09-03T18:33:25-07:00</updated>
     <id>http://datamusing.github.io/blog/2014/09/03/the-case-for-interactive-visualizations-in-astrophysics</id>
-    <content type="html"><![CDATA[<p>Recently, I have been playing  a lot with interactive data visualizations for my data science introspection work. While making these interactive plots, and experiencing their sheer power in expressing so many aspects of the data in clean and simple charts, I have often wondered how much more enriching such interactive visualizations would have been in my astrophysicist life. The most versatile tool for this purpose is undoubtedly the <a href="http://d3js.org/">d3.js</a> javascript library. There is a  steep learning curve in mastering d3, and honestly, I am climbing it right now. So maybe, it would have been a bit  too much to invest a lot of time in picking up this tool while I was busy writing code, papers and grant proposals.  </p>
+    <content type="html"><![CDATA[<p>Recently, I have been playing  a lot with interactive data visualizations for my data science introspection work. While making these interactive plots, and experiencing their sheer power in expressing so many aspects of the data in clean and simple charts, I have often wondered how much more enriching such interactive visualizations would have been in my astrophysicist life.  <!--more-->  The most versatile tool for this purpose is undoubtedly the <a href="http://d3js.org/">d3.js</a> javascript library. There is a  steep learning curve in mastering d3, and honestly, I am climbing it right now. So maybe, it would have been a bit  too much to invest a lot of time in picking up this tool while I was busy writing code, papers and grant proposals.  </p>
 
 <blockquote>
   <p>Luckily, it turns out that there are high level libraries that have been built on top of d3.js, which are way simpler to use, and in as little as half an hour, one could have a rich interactive plot up and running!  </p>
@@ -26,12 +26,13 @@
 
 <p>So, here is my attempt to  share that sliver of wisdom, so that you, my  esteemed astrophysicist colleague, can make plots like this pretty easily. I show a case study here with a recent data release from the South Pole Telescope collaboration. </p>
 
-<p><!--more--> </p>
-
 <h2 id="the--2500-square-degree-spt-sz-cluster-sample">The  2500 square-degree SPT-SZ Cluster Sample</h2>
 
-<p>On September 2, 2014 the South Pole Telescope (SPT) collaboration published a paper on the arXiv entitled <em>Galaxy Clusters Discovered via the Sunyaev-Zel’dovich Effect in the 2500-square-degree SPT-SZ survey</em> <a href="http://arxiv.org/abs/1409.0850">(Bleem et al. 2014)</a>.  Incidentally, the work was led by Lindsey Bleem  whom I had the pleasure to interact with as  a fellow postdoc at the Argonne National Laboratory. <img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/sptpaper/bleemEtAl.png" width="400" height="200">
- This paper represents solid work  of following up 677 Sunyaev-Zel’dovich (SZ) clusters detected (at more than 4.5-$\sigma$ significance) by the temperature decrements they cause in the 95 and 150 GHz cosmic microwave background (CMB) maps. To confirm  these detections,  ground- and space-based imaging  was used to find their optical and near-infrared (NIR) counterparts. In 516 of the 677 candidates, the counterparts were found and a redshift could be derived. Here is a plot from the paper showing the mass vs. redshift of these 516 clusters as black crosses. From each point on the figure, you can read off the the mass ($M_{500}$)  and the redshift of the cluster. But there is so much more information for each galaxy cluster: </p>
+<p>On September 2, 2014 the South Pole Telescope (SPT) collaboration published a paper on the arXiv entitled <em>Galaxy Clusters Discovered via the Sunyaev-Zel’dovich Effect in the 2500-square-degree SPT-SZ survey</em> <a href="http://arxiv.org/abs/1409.0850">(Bleem et al. 2014)</a>.  Incidentally, the work was led by Lindsey Bleem  whom I had the pleasure to interact with as  a fellow postdoc at the Argonne National Laboratory. </p>
+
+<p><img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/sptpaper/bleemEtAl.png" width="400" height="200"></p>
+
+<p>This paper represents solid work  of following up 677 Sunyaev-Zel’dovich (SZ) clusters detected (at more than 4.5-$\sigma$ significance) by the temperature decrements they cause in the 95 and 150 GHz cosmic microwave background (CMB) maps. To confirm  these detections,  ground- and space-based imaging  was used to find their optical and near-infrared (NIR) counterparts. In 516 of the 677 candidates, the counterparts were found and a redshift could be derived. Here is a plot from the paper showing the mass vs. redshift of these 516 clusters as black crosses. From each point on the figure, you can read off the the mass ($M_{500}$)  and the redshift of the cluster. But there is so much more information for each galaxy cluster: </p>
 
 <ul>
   <li>the cluster ID</li>

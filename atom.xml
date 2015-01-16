@@ -4,7 +4,7 @@
   <title><![CDATA[Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2015-01-08T18:16:16-08:00</updated>
+  <updated>2015-01-16T01:09:19-08:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -18,12 +18,8 @@
     <link href="http://datamusing.github.io/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/"/>
     <updated>2015-01-07T00:15:33-08:00</updated>
     <id>http://datamusing.github.io/blog/2015/01/07/implicit-feedback-and-collaborative-filtering</id>
-    <content type="html"><![CDATA[<p>SAN FRANCISCO, CA — I have been re-reading  <a href="http://dl.acm.org/citation.cfm?id=1511352" title="Implicit Feedback Paper">this classic paper</a>, and was impressed both by its clarity and simplicity. </p>
-
-<blockquote>
-  <p>Often most powerful ideas are also the most elegant! </p>
-</blockquote>
-
+    <content type="html"><![CDATA[<p>SAN FRANCISCO, CA — I have been re-reading  <a href="http://dl.acm.org/citation.cfm?id=1511352" title="Implicit Feedback Paper">this classic paper</a>, and was impressed both by its clarity and simplicity. <!-- more --> </p>
+<blockquote><p>Often the most powerful ideas are also the most elegant!</p></blockquote>
 <p>Here, I will try to summarize the technique, with just enough math thrown in to facilitate understanding from a coding perspective. 
  <script type="math/tex">\def\RR{\bf R}</script>
 <script type="math/tex">\def\bx{\bf{x}}</script>
@@ -32,14 +28,14 @@
 <script type="math/tex">\renewcommand{\bbra}[1]{\left\langle{ #1}\right.}</script>
 <script type="math/tex">\renewcommand{\ket}[1]{\left\vert{ #1}\right\rangle}</script></p>
 
-<p><img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/implicitCollab/implicit_small.png" width="300" height="300" /></p>
+<p><img class="-responsive" src="https://dl.dropboxusercontent.com/u/18915298/blog/implicitCollab/implicit_small.png" /></p>
 
 <p><strong>Good Old Explicit</strong></p>
 
 <p>The classic problem of collaborative filtering (CF) is the one with explicit feedback: given a set of users <script type="math/tex">u</script> and items <script type="math/tex">i</script> observe the user-item interaction explicitly through, say, a rating <script type="math/tex">r_{ui}</script>, and then predict the ratings for the user-item pairs that are unknown. If we have <script type="math/tex">m</script> users and <script type="math/tex">n</script> items, we can envision an <script type="math/tex">m\times n</script> ratings matrix <script type="math/tex">\bf{R}</script> such that each row corresponds to a given user and non-empty elements in that row correspond to the ratings that this user has given to 
 the items. Because each user would typically rate a small proportion of the items, this matrix will be sparse. </p>
 
-<p>The aim of  Recommender Systems is to fill in the blanks of this matrix with predicted ratings using the information at hand: <em>matrix completion</em>. <!-- more --> The popular method of accomplishing this is through matrix factorization whereby the ratings matrix (that can routinely be a million users by a million items) is expressed as a product of two lower dimensional matrices, a user-features matrix and a item-features matrix. Typically, one uses 50-200 features. </p>
+<p>The aim of  Recommender Systems is to fill in the blanks of this matrix with predicted ratings using the information at hand: <em>matrix completion</em>. The popular method of accomplishing this is through matrix factorization whereby the ratings matrix (that can routinely be a million users by a million items) is expressed as a product of two lower dimensional matrices, a user-features matrix and a item-features matrix. Typically, one uses 50-200 features. </p>
 
 <p>Let us introduce a bit of notation. I borrow a bit of notation from quantum mechanics and write vectors as <script type="math/tex">\vert \bx \rangle</script>, such that it understood to be a column vector. This simplifies some algebraic manipulations later. The latent feature vector of user <script type="math/tex">u</script> is denoted as: </p>
 
@@ -178,11 +174,11 @@ i.e. the matrix product is the sum of the outer products of the rows, each of wh
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Fun with interactive visualizations in astrophysics]]></title>
+    <title type="html"><![CDATA[Fun With Interactive Visualizations in Astrophysics]]></title>
     <link href="http://datamusing.github.io/blog/2014/09/03/the-case-for-interactive-visualizations-in-astrophysics/"/>
     <updated>2014-09-03T18:33:25-07:00</updated>
     <id>http://datamusing.github.io/blog/2014/09/03/the-case-for-interactive-visualizations-in-astrophysics</id>
-    <content type="html"><![CDATA[<p>Recently, I have been playing  a lot with interactive data visualizations for my data science introspection work. While making these interactive plots, and experiencing their sheer power in expressing so many aspects of the data in clean and simple charts, I have often wondered how much more enriching such interactive visualizations would have been in my astrophysicist life. The most versatile tool for this purpose is undoubtedly the <a href="http://d3js.org/">d3.js</a> javascript library. There is a  steep learning curve in mastering d3, and honestly, I am climbing it right now. So maybe, it would have been a bit  too much to invest a lot of time in picking up this tool while I was busy writing code, papers and grant proposals.  </p>
+    <content type="html"><![CDATA[<p>Recently, I have been playing  a lot with interactive data visualizations for my data science introspection work. While making these interactive plots, and experiencing their sheer power in expressing so many aspects of the data in clean and simple charts, I have often wondered how much more enriching such interactive visualizations would have been in my astrophysicist life.  <!--more-->  The most versatile tool for this purpose is undoubtedly the <a href="http://d3js.org/">d3.js</a> javascript library. There is a  steep learning curve in mastering d3, and honestly, I am climbing it right now. So maybe, it would have been a bit  too much to invest a lot of time in picking up this tool while I was busy writing code, papers and grant proposals.  </p>
 
 <blockquote>
   <p>Luckily, it turns out that there are high level libraries that have been built on top of d3.js, which are way simpler to use, and in as little as half an hour, one could have a rich interactive plot up and running!  </p>
@@ -190,12 +186,13 @@ i.e. the matrix product is the sum of the outer products of the rows, each of wh
 
 <p>So, here is my attempt to  share that sliver of wisdom, so that you, my  esteemed astrophysicist colleague, can make plots like this pretty easily. I show a case study here with a recent data release from the South Pole Telescope collaboration. </p>
 
-<p><!--more--> </p>
-
 <h2 id="the--2500-square-degree-spt-sz-cluster-sample">The  2500 square-degree SPT-SZ Cluster Sample</h2>
 
-<p>On September 2, 2014 the South Pole Telescope (SPT) collaboration published a paper on the arXiv entitled <em>Galaxy Clusters Discovered via the Sunyaev-Zel’dovich Effect in the 2500-square-degree SPT-SZ survey</em> <a href="http://arxiv.org/abs/1409.0850">(Bleem et al. 2014)</a>.  Incidentally, the work was led by Lindsey Bleem  whom I had the pleasure to interact with as  a fellow postdoc at the Argonne National Laboratory. <img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/sptpaper/bleemEtAl.png" width="400" height="200" />
- This paper represents solid work  of following up 677 Sunyaev-Zel’dovich (SZ) clusters detected (at more than 4.5-$\sigma$ significance) by the temperature decrements they cause in the 95 and 150 GHz cosmic microwave background (CMB) maps. To confirm  these detections,  ground- and space-based imaging  was used to find their optical and near-infrared (NIR) counterparts. In 516 of the 677 candidates, the counterparts were found and a redshift could be derived. Here is a plot from the paper showing the mass vs. redshift of these 516 clusters as black crosses. From each point on the figure, you can read off the the mass ($M_{500}$)  and the redshift of the cluster. But there is so much more information for each galaxy cluster: </p>
+<p>On September 2, 2014 the South Pole Telescope (SPT) collaboration published a paper on the arXiv entitled <em>Galaxy Clusters Discovered via the Sunyaev-Zel’dovich Effect in the 2500-square-degree SPT-SZ survey</em> <a href="http://arxiv.org/abs/1409.0850">(Bleem et al. 2014)</a>.  Incidentally, the work was led by Lindsey Bleem  whom I had the pleasure to interact with as  a fellow postdoc at the Argonne National Laboratory. </p>
+
+<p><img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/sptpaper/bleemEtAl.png" width="400" height="200" /></p>
+
+<p>This paper represents solid work  of following up 677 Sunyaev-Zel’dovich (SZ) clusters detected (at more than 4.5-$\sigma$ significance) by the temperature decrements they cause in the 95 and 150 GHz cosmic microwave background (CMB) maps. To confirm  these detections,  ground- and space-based imaging  was used to find their optical and near-infrared (NIR) counterparts. In 516 of the 677 candidates, the counterparts were found and a redshift could be derived. Here is a plot from the paper showing the mass vs. redshift of these 516 clusters as black crosses. From each point on the figure, you can read off the the mass ($M_{500}$)  and the redshift of the cluster. But there is so much more information for each galaxy cluster: </p>
 
 <ul>
   <li>the cluster ID</li>
@@ -349,18 +346,17 @@ Here is my <a href="https://gist.github.com/datamusing/d353dd63e013448727b4">gis
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[On a mission, in the Mission]]></title>
+    <title type="html"><![CDATA[On a Mission, in the Mission]]></title>
     <link href="http://datamusing.github.io/blog/2014/08/02/on-a-mission/"/>
     <updated>2014-08-02T10:17:34-07:00</updated>
     <id>http://datamusing.github.io/blog/2014/08/02/on-a-mission</id>
     <content type="html"><![CDATA[<h3 id="or-how-i-leveraged-machine-learning-to-find-must-try-dishes-in-my-neighborhood"><em>or, how I leveraged machine learning to find must try dishes in my neighborhood!</em></h3>
 
-<p>SAN FRANCISCO, CA — Whether its the yummy <em>focaccia de recco</em> at <strong>Farina</strong>, the scrumptious <em>steak tartare</em> at <strong>Bar Tartine</strong>, the <em>chicken liver mousse</em> at Range, or the absolutely bulletproof <em>sesame fried chicken</em> at <strong>Foreign Cinema</strong> — each fine dining restaurant in the Mission District of San Francisco seems to have something mouthwateringly unique to offer.</p>
+<p>SAN FRANCISCO, CA — Whether its the yummy <em>focaccia de recco</em> at <strong>Farina</strong>, the scrumptious <em>steak tartare</em> at <strong>Bar Tartine</strong>, the <em>chicken liver mousse</em> at Range, or the absolutely bulletproof <em>sesame fried chicken</em> at <strong>Foreign Cinema</strong> — each fine dining restaurant in the Mission District of San Francisco seems to have something mouthwateringly unique to offer.
+ <!--more--> 
+<img class="center" src="https://dl.dropboxusercontent.com/u/18915298/blog/mission_food/bar_tartine.jpg" width="750" /></p>
 
-<p><img class="center" src="https://dl.dropboxusercontent.com/u/18915298/blog/mission_food/bar_tartine.jpg" /></p>
-
-<p>The Mission is my neighborhood.  I endearingly call it  the “SF Foodie Central”, not just because some of the best fine dinning restaurants  happen to be here, but also because smaller, fiercely independent purveyors of fine delicacies like <em>Craftsman &amp; Wolves</em>, <em>Dandelion Chocolate</em>, <em>Tartine Bakery</em>, <em>Bi-Rite Creamery</em>,  <em>Four Barrel Coffee</em>, and <em>Ritual Roasters</em>  keep the food scene vibrant and at its delicious best! And then, there is the Mission Mexican food, which is hands down the best in the city. 
-  <!--more--> </p>
+<p>The Mission is my neighborhood.  I endearingly call it  the “SF Foodie Central”, not just because some of the best fine dinning restaurants  happen to be here, but also because smaller, fiercely independent purveyors of fine delicacies like <em>Craftsman &amp; Wolves</em>, <em>Dandelion Chocolate</em>, <em>Tartine Bakery</em>, <em>Bi-Rite Creamery</em>,  <em>Four Barrel Coffee</em>, and <em>Ritual Roasters</em>  keep the food scene vibrant and at its delicious best! And then, there is the Mission Mexican food, which is hands down the best in the city. </p>
 
 <p>So it was quite predictable that when analyzing <a href="http://www.opentable.com">OpenTable</a> diner reviews for a data science concept project, I chose to go after the restaurants in the Mission District first. The result of this analysis is a list of <em>the most talked about dishes</em> in the restaurants. </p>
 
@@ -368,9 +364,11 @@ Here is my <a href="https://gist.github.com/datamusing/d353dd63e013448727b4">gis
 
 <h2 id="an-overview-of-the-algorithm">An overview of the algorithm</h2>
 
-<p>Before I inundate you with names and pictures of those amazing dishes, let me get through the crux of the algorithm as quickly as possible. 
-<img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/mission_food/brunch.png" width="400" height="400" />
-The first insight I wanted glean from the huge amount of reviews we have was the set of  main themes, or <em>topics</em> that people are talking about. That is done with a method called <em>topic analysis</em>, for which I used non-negative matrix factorization (NMF) as the main technique (I will write more about the nuances of the method in a future post).  A topic, is essentially a coherent collection of words - or a distribution of over words in the vocabulary. The top words in the <strong>brunch</strong> topic, e.g. may look like the one on the right. It is almost magical to see how words like  <em>brunch, sunday, eggs, benedict, omelette, poached, mimosa, hash, brown</em> and so forth come together into a tightly thematic topic that is readily interpretable. Topic analysis gave me topics for food, drinks, ambiance, service, and so on. For the menu item hunt that was the main focus of this post,  I concentrated on all the food topics. Note that the way topic analysis works, we obtain as a free byproduct the weight of the topics in each review, and by extension, the weight of each topic for each restaurant; e.g. the seafood topic will have very little weight in a restaurant that serves only meat dishes. Once I had that information, I could then look for the most frequently occurring words, bigrams, and trigrams within the context of the topics that peak at that restaurant, and quickly identify the most mentioned food items. There is some secret sauce that helps me disambiguate different ways reviewers talk about the same dish (e.g., someone says “cellophane noodles”, someone else says “cellophane noodles with crab”, yet another reviewer says “the crab noodles”, but they are all referring to the dish “cellophane noodles with dungeness crab”). 
+<p>Before I inundate you with names and pictures of those amazing dishes, let me get through the crux of the algorithm as quickly as possible. </p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/mission_food/brunch.png" width="400" /></p>
+
+<p>The first insight I wanted glean from the huge amount of reviews we have was the set of  main themes, or <em>topics</em> that people are talking about. That is done with a method called <em>topic analysis</em>, for which I used non-negative matrix factorization (NMF) as the main technique (I will write more about the nuances of the method in a future post).  A topic, is essentially a coherent collection of words - or a distribution of over words in the vocabulary. The top words in the <strong>brunch</strong> topic, e.g. may look like the one on the right. It is almost magical to see how words like  <em>brunch, sunday, eggs, benedict, omelette, poached, mimosa, hash, brown</em> and so forth come together into a tightly thematic topic that is readily interpretable. Topic analysis gave me topics for food, drinks, ambiance, service, and so on. For the menu item hunt that was the main focus of this post,  I concentrated on all the food topics. Note that the way topic analysis works, we obtain as a free byproduct the weight of the topics in each review, and by extension, the weight of each topic for each restaurant; e.g. the seafood topic will have very little weight in a restaurant that serves only meat dishes. Once I had that information, I could then look for the most frequently occurring words, bigrams, and trigrams within the context of the topics that peak at that restaurant, and quickly identify the most mentioned food items. There is some secret sauce that helps me disambiguate different ways reviewers talk about the same dish (e.g., someone says “cellophane noodles”, someone else says “cellophane noodles with crab”, yet another reviewer says “the crab noodles”, but they are all referring to the dish “cellophane noodles with dungeness crab”). 
 In the end, you just count up the mappings to the dish item, rank them by number of mentions, and voila, you have the most mentioned dishes! </p>
 
 <p>And now lets turn to the results! </p>
@@ -385,16 +383,19 @@ In the end, you just count up the mappings to the dish item, rank them by number
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Detecting people in photographs using skin tone]]></title>
+    <title type="html"><![CDATA[Detecting People in Photographs Using Skin Tone]]></title>
     <link href="http://datamusing.github.io/blog/2014/07/06/detecting-people-in-photographs-using-skin-tone/"/>
     <updated>2014-07-06T00:26:21-07:00</updated>
     <id>http://datamusing.github.io/blog/2014/07/06/detecting-people-in-photographs-using-skin-tone</id>
-    <content type="html"><![CDATA[<p>SAN FRANCISCO, CA — As a Data Scientist at <a href="http://opentable.com">OpenTable</a>, my computer screen often fills up with images of scrumptious food items (<em>effectively keeping my metabolic rate on  a high gear!</em>). Many of these photographs are professionally or semi-professionally taken by food photographers or enthusiasts (aka FoodSpotters!).  <img class="right" src="https://dl.dropboxusercontent.com/u/18915298/blog/detectSkin/tea-party.jpg" width="200" height="200" title="tea-party tea-party 2" /> Annoyingly, a lot of photos, especially those from social media channels,  come with portraits of eaters posing with the eaten, such as the one shown here.   Of course, one could use face detection algorithms, and other sophisticated techniques to weed out these photos. These techniques often require a lot of overhead and dependency on external libraries. Also, there may not even be a face in the photo to detect, but a hand or some portion of the torso might be showing. Over the weekend, I have been thinking about very fast ways of finding a human subject in a photograph, so that I could generate some quick features for classifying photos. It turns out that one promising way to do that could be to detect human skin pixels in the photos. </p>
+    <content type="html"><![CDATA[<p>SAN FRANCISCO, CA — As a Data Scientist at <a href="http://opentable.com">OpenTable</a>, my computer screen often fills up with images of scrumptious food items (<em>effectively keeping my metabolic rate on  a high gear!</em>). Many of these photographs are professionally or semi-professionally taken by food photographers or enthusiasts (aka FoodSpotters!).   <!--more--> </p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/detectSkin/tea-party.jpg" /> </p>
+
+<p>Annoyingly, a lot of photos, especially those from social media channels,  come with portraits of eaters posing with the eaten, such as the one shown here.   Of course, one could use face detection algorithms, and other sophisticated techniques to weed out these photos. These techniques often require a lot of overhead and dependency on external libraries. Also, there may not even be a face in the photo to detect, but a hand or some portion of the torso might be showing. Over the weekend, I have been thinking about very fast ways of finding a human subject in a photograph, so that I could generate some quick features for classifying photos. It turns out that one promising way to do that could be to detect human skin pixels in the photos. </p>
 
 <h2 id="detecting-skin-pixels"><em>Detecting skin pixels</em></h2>
 
-<p>A quick digging into the subject of detecting skin pixels revealed a rich literature on this subject. As this is a blog post and not a review paper, I will only describe the bits I used, and leave the reader with this <a href="http://academic.aua.am/Skhachat/Public/Papers%20on%20Face%20Detection/Survey%20on%20Skin%20Color%20Techniques.pdf">paper</a> or <a href="http://pdf.aminer.org/000/367/151/image_chromatic_adaptation_using_anns_for_skin_color_adaptation.pdf">this one</a> as an entry point into this subject. <em>The fundamental concept behind pixel based skin detection is that the color of human skin (across various races and ethnicities) occupies a very tight region in the space of colors.</em>  In brief, there are three main ways to detect skin pixels: 
-  <!--more--> </p>
+<p>A quick digging into the subject of detecting skin pixels revealed a rich literature on this subject. As this is a blog post and not a review paper, I will only describe the bits I used, and leave the reader with this <a href="http://academic.aua.am/Skhachat/Public/Papers%20on%20Face%20Detection/Survey%20on%20Skin%20Color%20Techniques.pdf">paper</a> or <a href="http://pdf.aminer.org/000/367/151/image_chromatic_adaptation_using_anns_for_skin_color_adaptation.pdf">this one</a> as an entry point into this subject. <em>The fundamental concept behind pixel based skin detection is that the color of human skin (across various races and ethnicities) occupies a very tight region in the space of colors.</em>  In brief, there are three main ways to detect skin pixels: </p>
 
 <ol>
   <li><strong>Explicit Skin Model Based Method</strong>:  This class of methods try to use machine learning to find the best colorspace and a simple decision rule to define the boundaries the skin cluster in that colorspace. </li>
