@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: aeropress | Musings in Amusing Data]]></title>
+  <link href="http://datamusing.github.io/blog/categories/aeropress/atom.xml" rel="self"/>
+  <link href="http://datamusing.github.io/"/>
+  <updated>2015-01-26T00:27:17-08:00</updated>
+  <id>http://datamusing.github.io/</id>
+  <author>
+    <name><![CDATA[Sudeep Das]]></name>
+    <email><![CDATA[datamusing@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Inverted Aeropress Coffee On The Go: When a (data) scientist needs to think on the road]]></title>
+    <link href="http://datamusing.github.io/blog/2015/01/25/inverted-aeropress-on-the-go-when-a-data-scientist-needs-to-think-on-the-road/"/>
+    <updated>2015-01-25T21:16:37-08:00</updated>
+    <id>http://datamusing.github.io/blog/2015/01/25/inverted-aeropress-on-the-go-when-a-data-scientist-needs-to-think-on-the-road</id>
+    <content type="html"><![CDATA[<p>SAN FRANCISCO, CA — Only today, I was discussing the relative merits of Ritual, Four Barrel and Blue Bottle coffee with my friend Eric from <a href="www.bayesimpact.org">Bayes Impact</a>, and he mentioned in the passing how badly he craved good coffee while traveling across the US away from the Bay Area. In my academic career, I used to travel roughly 80-120k miles (domestic + international) every year out of Berkeley, and I too faced this problem incessantly. </p>
+
+<p>The Bay Area, indeed, is endowed with a little too much of good coffee. Look at <a href="http://www.epicurious.com/articlesguides/diningtravel/culinarytravel/best-coffee-shops-in-america">Epicurious’s listing</a> of 25 best coffee shops in America.  Five of them are in SF. </p>
+
+<p>If you do not live here, in your defense, and  to make sure that we do not start off on the wrong foot, let me assert that excellent coffee can be found in most major cities, if you looked for it, and were ready to hike for it. Some of my favorites (either through repeated visits, or because I have tasted their beans) are <strong>Cafe Grumpy</strong>  in New York,  <strong>The Wormhole</strong> in Chicago, <strong>Verve</strong> in Santa Cruz, <strong>The French Press</strong>  in Santa Barbara, <strong>Handsome Roasters</strong> in Los Angeles, <strong>Coava</strong> or <strong>Stumptown</strong> in Portland, <strong>Kuma</strong> in Seattle,   <strong>Forty Ninth Parallel</strong> in Vancouver,  <strong>Spyhouse</strong>, <strong>Dogwood</strong> or <strong>Peace</strong> in the Twin Cities.  Outside the US, some of my favorites are <strong>Omotesando Koffee</strong> in Tokyo, <strong>Hanafusa</strong> (for siphon) in Kyoto, <strong>Cafe Verlet</strong> in Paris, <strong>Claudio Corallo</strong> in Lisbon (for the São Tomé coffee, but also for some of  the best chocolates in the world!), and the list goes on. </p>
+
+<p>But believe me, there are vast tracts of humanity, where you can go mile after mile without finding a single cup of palatable coffee. Also, waking up in a hotel room in a strange new city, possibly with jet lag, you do not want to be caught unawares, and trust that little drip machine with pouches of ground coffee of unknown lineage. </p>
+
+<h2 id="enter-the-aeropress">Enter, the Aeropress.</h2>
+
+<p>Personally, the Chemex is my favorite way of making coffee (I’ll write about it some other day), but when it comes to traveling with coffee, the aeropress is one of the best options.  It is portable, easily packable, a breeze to clean, and if you have a Porlex grinder it packs right inside the tube. And you can brew directly into a coffee cup. When you buy an aeropress, you will find some instructions on the outside of the carton, but that is just for making espresso style coffee with it. The real deal, at least for me, is  the inverted aeropress method that makes a nice full cup of smooth robust coffee. </p>
+
+<p>So, here are some illustrated guidelines for you! </p>
+
+<p>Let us start with </p>
+
+<h2 id="what-you-need">What you need:</h2>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/what_you_need.png" alt="" /></p>
+
+<ul>
+  <li>A coffee mug </li>
+  <li>Coffee Beans (roasted within the past week if possible)</li>
+  <li>The Aeropress (with its paper filters, and plunger or a spoon)</li>
+  <li>A hand grinder (Hario slim grinder show here)</li>
+  <li>Access to hot water (in this case, I asked the sandwich shop for some).</li>
+</ul>
+
+<h2 id="step-1">STEP 1</h2>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/step_1.png" width="375"></p>
+
+<p>Relax, and start grinding. </p>
+
+<p>Grind size should be two notches down the finest setting on the Hario, between the espresso ground and the french press (more of a  Clearwater beach sand texture than Santa Cruz!). </p>
+
+<p>Finish grinding, for each cup you want to
+make, grind up to the 1 cup mark on the
+Hario, roughly 15 grams of beans.</p>
+
+<h2 id="step-2">Step 2</h2>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/step_2b.png" width="375"></p>
+
+<p>Pull out the
+aeropress to the #4 mark, and stand the
+aeropress on its head, piston down!</p>
+
+<p>In goes the freshly ground coffee! </p>
+
+<h2 id="step-3">Step 3</h2>
+<p><img class="center" src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/step_3a.png" width="375"></p>
+
+<ul>
+  <li>Slowly start pouring the hot water. The temperature should be around 190 F.
+Pour water up to the #2 mark, roughly twice the volume of the ground coffee.</li>
+</ul>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/step_3b.png" width="375"></p>
+
+<ul>
+  <li>Use the plunger to gently
+saturate the coffee (neither
+shaken, nor stirred). Let
+stand for 30 secs.</li>
+</ul>
+
+<h2 id="step-4">Step 4</h2>
+
+<p><img class="center" src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/step_4.png" width="375"> </p>
+
+<p>Pour water to the top. Put the
+aeropress filter in the filter
+cap, and wet the filter with
+the remaining water.
+Give the coffee a stir, and
+attach the filter cap!
+At the one minute mark …</p>
+
+<h2 id="step-5">Step 5</h2>
+
+<p><img class="center" src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/step_5.png" width="375"> </p>
+
+<p>… pull the piston out a little
+to create a partial vacuum,
+then gently, and with
+confidence, invert the
+aeropress on top of the mug.</p>
+
+<h2 id="step-6">Step 6</h2>
+
+<p><img class="center" src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/step_6.png" width="375"> </p>
+
+<p>Press away, slowly and
+evenly, until all the water
+has passed through and a
+hissing sound is heard. </p>
+
+<h2 id="final-step">Final Step</h2>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/the_view.png" alt="" /></p>
+
+<p>Enjoy the view, and the coffee, and feel those gray cells light up!</p>
+]]></content>
+  </entry>
+  
+</feed>
