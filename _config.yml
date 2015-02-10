@@ -4,10 +4,12 @@
 
 url: http://datamusing.github.io
 title: Musings in Amusing Data 
-subtitle: Random Permabulations in Data Science
+subtitle: random permabulations in data science & astrophysics
 author: Sudeep Das 
 simple_search: https://www.google.com/search
-description:
+description: <img style='border-radius:50%; margin:7px'  align='left' src='http://www.gravatar.com/avatar/97e434b9c3efc9c1bfbd23c83061cde6.png'> </img> <b> Sudeep Das </b>  <br> I am a data scientist and an astrophysicist based in San Francisco. Before I jumped into data science, I completed my PhD in astrophysics from Princeton University, and worked as a theoretical cosmologist at UC Berkeley, LBNL and Argonne National Lab. 
+
+keywords: "Data Science, Machine Learning, Recommendation Systems, Astrophysics, Factorization Machines, Implicit Feedback, Non-negative matrix factorization, NLP, topic analysis, topic modeling"
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -56,7 +58,7 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
 # blog_index_asides:
-# post_asides:
+post_asides: [asides/github.html]
 # page_asides:
 
 # ----------------------- #
@@ -72,6 +74,7 @@ github_skip_forks: true
 # Twitter
 twitter_user: datamusing
 twitter_tweet_button: true
+twitter_follow_button: true
 
 # Google +1
 google_plus_one: false
@@ -91,11 +94,11 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+disqus_short_name: datamusing
+disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-58361665-1
 
 # Facebook Like
 facebook_like: true

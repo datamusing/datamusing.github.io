@@ -1,0 +1,106 @@
+---
+layout: post
+title: "Trendlines with Matplotlib"
+date: 2015-02-10 10:30:17 -0800
+comments: true
+categories: python plotting matplotlib sparkline trendline
+keywords: sparklines, sparkline, matplotlib, pylab, python, trendline
+description: sparklines with matplotlib python trend line
+---
+
+Okay, they look like sparklines, but  as Tufte reminds us, sparklines are really meant to be super condensed and mostly used inline. But sometimes, a plot very much similar  to sparklines can be a great way of showing trends. 
+
+Let's call them trendlines. 
+
+I saw these sparklinesque plots used in the NYT  Upshot article about the [food trends](http://www.nytimes.com/2014/08/12/upshot/special-sauce-for-measuring-food-trends-the-fried-calamari-index.html?_r=0&abt=0002&abg=1). 
+
+Right now, I am working on blog post for OpenTable, and decided to quickly hand roll some code to plot these.  Scroll to the bottom for the code, but here are how the results look:
+
+
+
+![](https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_right.png)
+
+<!--more-->
+
+### Labels at both ends
+
+![](https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_both.png)
+
+### Add a title 
+
+![](https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_both_title.png)
+
+### Just the bare minimum
+
+![](https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_no_fill.png)
+
+Here is the code, enjoy, and customize away! 
+
+``` python 
+def trendline(x,y, 
+              color='#5E3119', 
+              xtick_pos_and_labels = None, 
+              title = None, 
+              ymin = 0, 
+              fill=True, 
+              figsize=(10,3), 
+              startlabel=False):
+    # create fig and axis elements
+    fig, ax = plt.subplots(1,1,figsize=figsize)
+    
+    #extract beginning and ending values before rescaling
+    label0 = y[0]
+    label1 = y[-1]
+    
+    #rescale 
+    ymax = y.max()*1.0
+    y /= ymax
+    ymin  /= ymax
+    
+    #fill 
+    if fill:
+        plt.fill_between(np.arange(len(x)),y, color=color, alpha=0.5)
+    
+    #plot the line 
+    plt.plot(x,y, color=color,lw=2)
+    
+    
+    #despine 
+    for k,v in ax.spines.items():
+        v.set_visible(False)
+    ax.spines['top'].set_visible(False)
+    
+    #de-tick
+    ax.set_yticks([])
+    
+    # add x ticks and labels 
+    if xtick_pos_and_labels:
+        ax.set_xticks(xtick_pos_and_labels[0])
+        ax.set_xticklabels(xtick_pos_and_labels[1])
+    else:
+        ax.set_xticks(x)
+    # let the ticks stick out 
+    ax.xaxis.set_ticks_position('bottom')
+    ax.xaxis.set_tick_params(direction='out')
+    
+    # give some room at both ends 
+    
+    plt.xlim(x[0]-0.5,x[-1]+0.5)
+    plt.ylim(ymin,y.max()*1.15)
+    
+    #plot the ending  node
+    plt.plot(x[-1],y[-1],'o',color=color)
+    #put the label at the end node 
+    plt.text(x[-1],y[-1]+0.05,'%2.1f'%label1)
+    
+    #optioally, plot the start node and its label 
+    if startlabel:
+        plt.plot(x[0],y[0],'o',color=color)
+        plt.text(x[0]-0.05,y[0]+0.05,'%2.1f'%label0)
+    
+    #optionally put a title
+    if title:
+        plt.text(x[0],1.1,title,fontsize=15, color=color)
+```    
+
+

@@ -9,12 +9,16 @@ categories:
 - machine learning
 ---
 
- SAN FRANCISCO, CA --- As a Data Scientist at [OpenTable](http://opentable.com), my computer screen often fills up with images of scrumptious food items (_effectively keeping my metabolic rate on  a high gear!_). Many of these photographs are professionally or semi-professionally taken by food photographers or enthusiasts (aka FoodSpotters!).  {%img right https://dl.dropboxusercontent.com/u/18915298/blog/detectSkin/tea-party.jpg  200 200 tea-party tea-party 2%} Annoyingly, a lot of photos, especially those from social media channels,  come with portraits of eaters posing with the eaten, such as the one shown here.   Of course, one could use face detection algorithms, and other sophisticated techniques to weed out these photos. These techniques often require a lot of overhead and dependency on external libraries. Also, there may not even be a face in the photo to detect, but a hand or some portion of the torso might be showing. Over the weekend, I have been thinking about very fast ways of finding a human subject in a photograph, so that I could generate some quick features for classifying photos. It turns out that one promising way to do that could be to detect human skin pixels in the photos. 
+ SAN FRANCISCO, CA --- As a Data Scientist at [OpenTable](http://opentable.com), my computer screen often fills up with images of scrumptious food items (_effectively keeping my metabolic rate on  a high gear!_). Many of these photographs are professionally or semi-professionally taken by food photographers or enthusiasts (aka FoodSpotters!).   <!--more--> 
+ 
+  {%img  https://dl.dropboxusercontent.com/u/18915298/blog/detectSkin/tea-party.jpg %} 
+  
+ Annoyingly, a lot of photos, especially those from social media channels,  come with portraits of eaters posing with the eaten, such as the one shown here.   Of course, one could use face detection algorithms, and other sophisticated techniques to weed out these photos. These techniques often require a lot of overhead and dependency on external libraries. Also, there may not even be a face in the photo to detect, but a hand or some portion of the torso might be showing. Over the weekend, I have been thinking about very fast ways of finding a human subject in a photograph, so that I could generate some quick features for classifying photos. It turns out that one promising way to do that could be to detect human skin pixels in the photos. 
  
 ##_Detecting skin pixels_
 
 A quick digging into the subject of detecting skin pixels revealed a rich literature on this subject. As this is a blog post and not a review paper, I will only describe the bits I used, and leave the reader with this [paper](http://academic.aua.am/Skhachat/Public/Papers%20on%20Face%20Detection/Survey%20on%20Skin%20Color%20Techniques.pdf) or [this one](http://pdf.aminer.org/000/367/151/image_chromatic_adaptation_using_anns_for_skin_color_adaptation.pdf) as an entry point into this subject. _The fundamental concept behind pixel based skin detection is that the color of human skin (across various races and ethnicities) occupies a very tight region in the space of colors._  In brief, there are three main ways to detect skin pixels: 
-  <!--more--> 
+
   
 1.  **Explicit Skin Model Based Method**:  This class of methods try to use machine learning to find the best colorspace and a simple decision rule to define the boundaries the skin cluster in that colorspace. 
 2. __Non-parametric Methods__:  The key idea here is to estimate skin color distribution from a training data without deriving an explicit model of the skin color, e.g. a Naive-Bayes classifier. A skin/non-skin training data set can be found [here](https://archive.ics.uci.edu/ml/datasets/Skin+Segmentation).

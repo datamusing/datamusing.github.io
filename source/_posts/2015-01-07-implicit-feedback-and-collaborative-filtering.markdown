@@ -3,15 +3,15 @@ layout: post
 title: "Implicit Feedback and Collaborative Filtering"
 date: 2015-01-07 00:15:33 -0800
 comments: true
-categories: 
+author: "Sudeep Das"
+categories: ["recommendation systems"]
+sharing: true
 ---
 
 
 
-SAN FRANCISCO, CA --- I have been re-reading  <a href="http://dl.acm.org/citation.cfm?id=1511352" title="Implicit Feedback Paper">this classic paper</a>, and was impressed both by its clarity and simplicity. 
-
-> Often most powerful ideas are also the most elegant! 
-
+SAN FRANCISCO, CA --- I have been re-reading  <a href="http://dl.acm.org/citation.cfm?id=1511352" title="Implicit Feedback Paper">this classic paper</a>, and was impressed both by its clarity and simplicity. <!-- more --> 
+{% blockquote %} Often the most powerful ideas are also the most elegant! {% endblockquote %}
 Here, I will try to summarize the technique, with just enough math thrown in to facilitate understanding from a coding perspective. 
  $$\def\RR{\bf R}$$
 $$\def\bx{\bf{x}}$$
@@ -20,7 +20,7 @@ $$\renewcommand{\bra}[1]{\left\langle{ #1}\right\vert}$$
 $$\renewcommand{\bbra}[1]{\left\langle{ #1}\right.}$$
 $$\renewcommand{\ket}[1]{\left\vert{ #1}\right\rangle}$$
 
-{%img right  https://dl.dropboxusercontent.com/u/18915298/blog/implicitCollab/implicit_small.png 300 300 %}
+{%img-responsive https://dl.dropboxusercontent.com/u/18915298/blog/implicitCollab/implicit_small.png 750 %}
 
 
 __Good Old Explicit__
@@ -28,7 +28,7 @@ __Good Old Explicit__
 The classic problem of collaborative filtering (CF) is the one with explicit feedback: given a set of users $$u$$ and items $$i$$ observe the user-item interaction explicitly through, say, a rating $$r_{ui}$$, and then predict the ratings for the user-item pairs that are unknown. If we have $$m$$ users and $$n$$ items, we can envision an $$m\times n$$ ratings matrix $$\bf{R}$$ such that each row corresponds to a given user and non-empty elements in that row correspond to the ratings that this user has given to 
 the items. Because each user would typically rate a small proportion of the items, this matrix will be sparse. 
  
-The aim of  Recommender Systems is to fill in the blanks of this matrix with predicted ratings using the information at hand: <em>matrix completion</em>. <!-- more --> The popular method of accomplishing this is through matrix factorization whereby the ratings matrix (that can routinely be a million users by a million items) is expressed as a product of two lower dimensional matrices, a user-features matrix and a item-features matrix. Typically, one uses 50-200 features. 
+The aim of  Recommender Systems is to fill in the blanks of this matrix with predicted ratings using the information at hand: <em>matrix completion</em>. The popular method of accomplishing this is through matrix factorization whereby the ratings matrix (that can routinely be a million users by a million items) is expressed as a product of two lower dimensional matrices, a user-features matrix and a item-features matrix. Typically, one uses 50-200 features. 
 
 Let us introduce a bit of notation. I borrow a bit of notation from quantum mechanics and write vectors as $$\vert \bx \rangle$$, such that it understood to be a column vector. This simplifies some algebraic manipulations later. The latent feature vector of user $$u$$ is denoted as: 
 
@@ -149,4 +149,13 @@ $$ \left({\bf Y}^T {\bf C}^{u_0}  {\bf Y} + \lambda {\bf I} \right)\ket{\bx_{u_0
 that immediately gives us the solution (1) written above. 
 
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-58361665-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
