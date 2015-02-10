@@ -4,7 +4,7 @@
   <title><![CDATA[Category: matplotlib | Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/blog/categories/matplotlib/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2015-02-10T11:38:55-08:00</updated>
+  <updated>2015-02-10T11:52:00-08:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -26,19 +26,35 @@
 
 <p>Right now, I am working on blog post for OpenTable, and decided to quickly hand roll some code to plot these.  Scroll to the bottom for the code, but here are how the results look:</p>
 
+<p><code>python 
+trendline(xx, yy, xtick_pos_and_labels=[[0,6,12,18,24],['2000','2006','2012','2018','2024']])
+</code></p>
+
 <p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_right.png" alt="" /></p>
 
 <!--more-->
 
 <h3 id="labels-at-both-ends">Labels at both ends</h3>
 
+<p><code>python 
+trendline(xx, yy, xtick_pos_and_labels=[[0,6,12,18,24],['2000','2006','2012','2018','2024']], startlabel=True)
+</code></p>
+
 <p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_both.png" alt="" /></p>
 
 <h3 id="add-a-title">Add a title</h3>
 
+<p><code>python 
+trendline(xx, yy, xtick_pos_and_labels=[[0,6,12,18,24],['2000','2006','2012','2018','2024']], startlabel=True, title='TRENDING LINE')
+</code></p>
+
 <p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_both_title.png" alt="" /></p>
 
 <h3 id="just-the-bare-minimum">Just the bare minimum</h3>
+
+<p><code>python 
+trendline(xx, yy, xtick_pos_and_labels=[[0,6,12,18,24],['2000','2006','2012','2018','2024']], fill=False)
+</code></p>
 
 <p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_no_fill.png" alt="" /></p>
 
