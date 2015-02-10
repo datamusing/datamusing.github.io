@@ -4,7 +4,7 @@
   <title><![CDATA[Musings in Amusing Data]]></title>
   <link href="http://datamusing.github.io/atom.xml" rel="self"/>
   <link href="http://datamusing.github.io/"/>
-  <updated>2015-01-26T00:30:08-08:00</updated>
+  <updated>2015-02-10T11:38:55-08:00</updated>
   <id>http://datamusing.github.io/</id>
   <author>
     <name><![CDATA[Sudeep Das]]></name>
@@ -12,6 +12,170 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Trendlines With Matplotlib]]></title>
+    <link href="http://datamusing.github.io/blog/2015/02/10/sparklines-with-matplotlib/"/>
+    <updated>2015-02-10T10:30:17-08:00</updated>
+    <id>http://datamusing.github.io/blog/2015/02/10/sparklines-with-matplotlib</id>
+    <content type="html"><![CDATA[<p>Okay, they look like sparklines, but  as Tufte reminds us, sparklines are really meant to be super condensed and mostly used inline. But sometimes, a plot very much similar  to sparklines can be a great way of showing trends. </p>
+
+<p>Let’s call them trendlines. </p>
+
+<p>I saw these sparklinesque plots used in the NYT  Upshot article about the <a href="http://www.nytimes.com/2014/08/12/upshot/special-sauce-for-measuring-food-trends-the-fried-calamari-index.html?_r=0&amp;abt=0002&amp;abg=1">food trends</a>. </p>
+
+<p>Right now, I am working on blog post for OpenTable, and decided to quickly hand roll some code to plot these.  Scroll to the bottom for the code, but here are how the results look:</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_right.png" alt="" /></p>
+
+<!--more-->
+
+<h3 id="labels-at-both-ends">Labels at both ends</h3>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_both.png" alt="" /></p>
+
+<h3 id="add-a-title">Add a title</h3>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_both_title.png" alt="" /></p>
+
+<h3 id="just-the-bare-minimum">Just the bare minimum</h3>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/sparkline/trend_no_fill.png" alt="" /></p>
+
+<p>Here is the code, enjoy, and customize away! </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">def</span> <span class="nf">trendline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span>
+</span><span class="line">              <span class="n">color</span><span class="o">=</span><span class="s">&#39;#5E3119&#39;</span><span class="p">,</span>
+</span><span class="line">              <span class="n">xtick_pos_and_labels</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span>
+</span><span class="line">              <span class="n">title</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span>
+</span><span class="line">              <span class="n">ymin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class="line">              <span class="n">fill</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+</span><span class="line">              <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+</span><span class="line">              <span class="n">startlabel</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</span><span class="line">    <span class="c"># create fig and axis elements</span>
+</span><span class="line">    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">#extract beginning and ending values before rescaling</span>
+</span><span class="line">    <span class="n">label0</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class="line">    <span class="n">label1</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">#rescale </span>
+</span><span class="line">    <span class="n">ymax</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">*</span><span class="mf">1.0</span>
+</span><span class="line">    <span class="n">y</span> <span class="o">/=</span> <span class="n">ymax</span>
+</span><span class="line">    <span class="n">ymin</span>  <span class="o">/=</span> <span class="n">ymax</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">#fill </span>
+</span><span class="line">    <span class="k">if</span> <span class="n">fill</span><span class="p">:</span>
+</span><span class="line">        <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">#plot the line </span>
+</span><span class="line">    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">    <span class="c">#despine </span>
+</span><span class="line">    <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span class="line">        <span class="n">v</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+</span><span class="line">    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">#de-tick</span>
+</span><span class="line">    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+</span><span class="line">
+</span><span class="line">    <span class="c"># add x ticks and labels </span>
+</span><span class="line">    <span class="k">if</span> <span class="n">xtick_pos_and_labels</span><span class="p">:</span>
+</span><span class="line">        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xtick_pos_and_labels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class="line">        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">xtick_pos_and_labels</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class="line">    <span class="k">else</span><span class="p">:</span>
+</span><span class="line">        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class="line">    <span class="c"># let the ticks stick out </span>
+</span><span class="line">    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s">&#39;bottom&#39;</span><span class="p">)</span>
+</span><span class="line">    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="c"># give some room at both ends </span>
+</span><span class="line">
+</span><span class="line">    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+</span><span class="line">    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">*</span><span class="mf">1.15</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">#plot the ending  node</span>
+</span><span class="line">    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;o&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+</span><span class="line">    <span class="c">#put the label at the end node </span>
+</span><span class="line">    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.05</span><span class="p">,</span><span class="s">&#39;</span><span class="si">%2.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">label1</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">#optioally, plot the start node and its label </span>
+</span><span class="line">    <span class="k">if</span> <span class="n">startlabel</span><span class="p">:</span>
+</span><span class="line">        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&#39;o&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+</span><span class="line">        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.05</span><span class="p">,</span><span class="s">&#39;</span><span class="si">%2.1f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">label0</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">#optionally put a title</span>
+</span><span class="line">    <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+</span><span class="line">        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mf">1.1</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Inverted Aeropress Coffee on the Go: When a (Data) Scientist Needs to Think on the Road]]></title>
@@ -122,6 +286,89 @@ hissing sound is heard. </p>
 <p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/aeropress/the_view.png" alt="" /></p>
 
 <p>Enjoy the view, and the coffee, and feel those gray cells light up!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[In Search of the Most Informative Review]]></title>
+    <link href="http://datamusing.github.io/blog/2015/01/18/in-search-of-the-most-informative-review/"/>
+    <updated>2015-01-18T14:06:09-08:00</updated>
+    <id>http://datamusing.github.io/blog/2015/01/18/in-search-of-the-most-informative-review</id>
+    <content type="html"><![CDATA[<p>The goal here is to find from the corpus of reviews of a restaurant, the one review that is most informative. 
+<!--more-->
+##How do we define informative? </p>
+
+<p>For free form text, it is usually very difficult to come up with a metric for how informative a review is, just based on discrete signatures like tags. Here is where topics come in most handy. We illustrate how we can do this with SF Bay Area reviews. </p>
+
+<h2 id="the-recipe-and-a-worked-example">The recipe, and a worked example</h2>
+
+<p>First, I took the <strong>4 or 5 star</strong> reviews from the last year from all SF Bay area restaurants, and learnt 100 topics from them. </p>
+
+<p>Then, for each restaurant, I find the most relevant topics that apply to that restaurant. I am glossing over some details here, but basically I have a mathematical formulations that finds the topics that have the highest proportion in that restaurant, and are  also distinctive of the restaurant at hand. So, in the end we have a distribution of topics for that restaurant. </p>
+
+<p>Let take <a href="http://www.opentable.com/la-mar-cebicheria-peruana">La Mar Cabicheria Peruana</a> near Embarcadero as an example. I have been there several times, and I know it has excellent ambiance, amazing views of the bay, a great seafood menu, and great service.  </p>
+
+<p>Let us see how topics do in summarizing this information. 
+Here is the topic distribution for La Mar:</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/featuredReviews/LaMarTopics.png" alt="" /></p>
+
+<p>You can eyeball the  top 5 topics as topics 20, 60, 66, 33 and 79. 
+And here is how they look:</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/featuredReviews/LaMarTopTopics.png" alt="" /></p>
+
+<p>They seem to be bang on! From the distribution, we see that there are various other topics with significant weight for this restaurant. </p>
+
+<p>So, the most informative review will be the one that has a topic distribution that is most closely aligned with the above reference topic distribution. </p>
+
+<p>Lets pick an arbitrary review first. It is a 5-star review and it says:</p>
+
+<blockquote>
+  <p>‘After living in Lima for the past 3 1/2 years, it is good to have this to get our Cebiche and Pisco fix!!’</p>
+</blockquote>
+
+<p>It’s topic distribution looks like:</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/featuredReviews/LaMarLowInfoReviewDist.png" alt="" /></p>
+
+<p>It is very different from the reference topic distribution, and has weight only on one topic, the Topic 62 that looks like:</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/featuredReviews/topic_62.png" alt="" /></p>
+
+<p>As such, this review is almost of no use to us. </p>
+
+<p>To find the best review, we look at the topic distribution of each review, and find its distance from the reference topic distribution (this is done with what is known as a cosine distance). Then we can rank all the reviews by increasing distance from the reference distribution.  </p>
+
+<p>If I just pick the top review without any date restriction this is what I find: </p>
+
+<blockquote>
+  <p>I discovered this restaurant after returning from a trip to Peru this year.  The menu is extensive, creative, and authentic. On arrival, we were presented with complimentary house-made potato, sweet potato and plantain chips accompanied by wonderful aji (pepper) flavored dips.  The halibut ceviche was out of this world!  The fish was so fresh, citrus bright, and the presentation gorgeous.  Our waiter was very helpful and knowledgeable, guiding us through the menu, which assured us of a terrific meal and dining experience.  Other pluses: easy walk from the Embarcadero BART station, close to the Ferry Building, and nice view of the Bay from the patio tables.  I have been back twice and plan to dine at La Mar again soon!  — Dined on 2014-11-12</p>
+</blockquote>
+
+<p>This review has a topic distribution that looks very close to the reference distribution.</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/18915298/blog/featuredReviews/LaMarHighInfoReviewDist.png" alt="" /></p>
+
+<p>So, we have found this is a beautiful informative review. It touches upon most of the salient aspects of the restaurants. </p>
+
+<h2 id="applying-business-rules">Applying business rules</h2>
+
+<p>One we have all the reviews sorted by information content, it is very easy to apply business rules. We can say, for example, we want the featured  review to be no more than 90 days old. So we can just go down the list and find the top review that meets this criterion:</p>
+
+<p>This gives us:</p>
+
+<blockquote>
+  <p>Took my company to LaMar for a holiday celebration and it exceeded our expectations. Great view, lively crowd, and unique menu. We shared many plates and they all hit the mark. Finished with five different desserts…all excellent. Can’t wait to go back and explore more items on the menu!<br />
+Dined on   — 2014-12-10</p>
+</blockquote>
+
+<p>that is still an excellent review for featuring! </p>
+
+<h2 id="to-do-finding-the-most-relevant-snippet-from-the-featured-review">TO DO: Finding the most relevant snippet from the featured review</h2>
+
+<p>So, now that we have identified the review to be featured, we need to find the snippet that we want to highlight. Right now, we use an excerpt from the beginning of the review, but there are many possibilities here. This needs to be decided at a business rule level. </p>
+
 ]]></content>
   </entry>
   
