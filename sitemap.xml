@@ -15,12 +15,6 @@
   </url>
   
   <url>
-    <loc>http://datamusing.github.io/blog/2015/01/18/in-search-of-the-most-informative-review/</loc>
-    <lastmod>2015-01-18T14:06:09-08:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
     <loc>http://datamusing.github.io/blog/2015/01/07/implicit-feedback-and-collaborative-filtering/</loc>
     <lastmod>2015-01-07T00:15:33-08:00</lastmod>
     <priority>0.8</priority>
@@ -47,56 +41,56 @@
   
   <url>
     <loc>http://datamusing.github.io/blog/archives/</loc>
-    <lastmod>2015-02-10T11:51:59-08:00</lastmod>
+    <lastmod>2015-02-16T00:44:26-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://datamusing.github.io/</loc>
-    <lastmod>2015-02-10T11:51:59-08:00</lastmod>
+    <lastmod>2015-02-16T00:44:26-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://datamusing.github.io/posts/</loc>
-    <lastmod>2015-02-10T11:51:59-08:00</lastmod>
+    <lastmod>2015-02-16T00:44:26-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://datamusing.github.io/blog/categories/</loc>
-    <lastmod>2015-02-10T11:51:59-08:00</lastmod>
+    <lastmod>2015-02-16T00:44:26-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://datamusing.github.io/cdips-berkeley-skin-vs-food/</loc>
-    <lastmod>2015-02-10T11:51:59-08:00</lastmod>
+    <lastmod>2015-02-16T00:44:26-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://datamusing.github.io/detecting-people-in-photos-using-skin-color/</loc>
-    <lastmod>2015-02-10T11:51:59-08:00</lastmod>
+    <lastmod>2015-02-16T00:44:26-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://datamusing.github.io/cdips-berkeley-sentiments-around-tags/</loc>
-    <lastmod>2015-02-10T11:51:59-08:00</lastmod>
+    <lastmod>2015-02-16T00:44:26-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://datamusing.github.io/cdips-berkeley/</loc>
-    <lastmod>2015-02-10T11:51:59-08:00</lastmod>
+    <lastmod>2015-02-16T00:44:26-08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
