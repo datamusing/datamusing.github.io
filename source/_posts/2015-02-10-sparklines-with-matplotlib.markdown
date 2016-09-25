@@ -10,7 +10,7 @@ description: sparklines with matplotlib python trend line
 
 Okay, they look like sparklines, but  as Tufte reminds us, sparklines are really meant to be super condensed and mostly used inline. But sometimes, a plot very much similar  to sparklines can be a great way of showing trends. 
 
-Let's call them trendlines. 
+Let's call them trendlines! 
 
 I saw these sparklinesque plots used in the NYT  Upshot article about the [food trends](http://www.nytimes.com/2014/08/12/upshot/special-sauce-for-measuring-food-trends-the-fried-calamari-index.html?_r=0&abt=0002&abg=1). 
 
